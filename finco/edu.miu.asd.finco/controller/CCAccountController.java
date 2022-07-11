@@ -1,9 +1,9 @@
 package controller;
 
-import component.IController;
+import ioc.IComponent;
 import service.ICCAccountService;
 
-public class CCAccountController implements IController {
+public class CCAccountController implements IComponent {
     private ICCAccountService ccAccountService;
 
     public void setCcAccountService(ICCAccountService ccAccountService) {

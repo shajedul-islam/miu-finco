@@ -1,4 +1,4 @@
-package component;
+package ioc;
 
 public interface IComponent {
 }

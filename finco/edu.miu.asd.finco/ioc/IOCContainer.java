@@ -1,7 +1,5 @@
 package ioc;
 
-import component.IComponent;
-
 import java.beans.PropertyDescriptor;
 import java.util.HashMap;
 import java.util.Map;
