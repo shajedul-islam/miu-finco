@@ -76,7 +76,7 @@ public abstract class Customer implements ICustomer {
 		this.email = email;
 	}
 	
-    Customer(String nm, String ste, String ct, String sta, String zp, String em)
+	public Customer(String nm, String ste, String ct, String sta, String zp, String em)
 	{
 		this.name = nm;
 		this.street = ste;

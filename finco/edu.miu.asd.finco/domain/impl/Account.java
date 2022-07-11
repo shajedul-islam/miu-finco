@@ -13,7 +13,7 @@ public abstract class Account implements IAccount {
     	return customer;
     }
     
-    public void setAccountCustomer(Customer customer)
+    public void setCustomer(Customer customer)
     {
     	this.customer =  customer;
     }
