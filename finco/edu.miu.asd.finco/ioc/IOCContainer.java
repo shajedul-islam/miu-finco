@@ -1,6 +1,7 @@
 package ioc;
 
 import java.beans.PropertyDescriptor;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -9,10 +10,10 @@ import java.util.TreeMap;
 public class IOCContainer {
     public static Map<String, IComponent> componentMap;
 
-    public static void buildApplicationContext() {
+    public static void buildApplicationContext(InputStream inputStream) {
         Properties properties = new Properties();
         try {
-            properties.load(IOCContainer.class.getResourceAsStream("finco-dependencies.properties"));
+            properties.load(inputStream);
             componentMap = new HashMap<String, IComponent>();
 
             // Sort the properties in order they were written in the file
