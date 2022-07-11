@@ -1,4 +1,4 @@
 package component;
 
-public interface IBean extends IComponent {
+public interface IBean {
 }
