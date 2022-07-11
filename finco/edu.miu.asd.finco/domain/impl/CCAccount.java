@@ -1,7 +1,8 @@
 package domain.impl;
 
-import java.sql.Date;
 import domain.IAccount;
+
+import java.sql.Date;
 
 public abstract class CCAccount implements IAccount {
 

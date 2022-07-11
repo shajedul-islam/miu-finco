@@ -1,6 +1,5 @@
 package repository.impl;
 
-import component.IComponent;
 import repository.IAccountRepository;
 
 public class AccountRepository implements IAccountRepository {

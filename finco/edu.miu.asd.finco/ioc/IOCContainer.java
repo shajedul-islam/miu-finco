@@ -1,6 +1,5 @@
 package ioc;
 
-import com.sun.tools.javac.Main;
 import component.IComponent;
 
 import java.beans.PropertyDescriptor;

@@ -1,6 +1,5 @@
 package repository.impl;
 
-import component.IComponent;
 import repository.ICCAccountRepository;
 
 public class CCAccountRepository implements ICCAccountRepository {

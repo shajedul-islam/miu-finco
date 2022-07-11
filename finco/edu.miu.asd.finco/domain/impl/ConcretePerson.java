@@ -1,8 +1,8 @@
 package domain.impl;
 
-import java.sql.Date;
-
 import domain.IPerson;
+
+import java.sql.Date;
 
 public class ConcretePerson extends Customer implements IPerson {
 

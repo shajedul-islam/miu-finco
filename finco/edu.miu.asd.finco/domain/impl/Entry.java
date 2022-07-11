@@ -1,8 +1,8 @@
 package domain.impl;
 
-import java.sql.Date;
-
 import domain.IEntry;
+
+import java.sql.Date;
 
 public class Entry implements IEntry {
 	

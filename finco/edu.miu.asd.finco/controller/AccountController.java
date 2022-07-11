@@ -1,7 +1,6 @@
 package controller;
 
 import component.IController;
-import component.IService;
 import service.IAccountService;
 
 public class AccountController implements IController {

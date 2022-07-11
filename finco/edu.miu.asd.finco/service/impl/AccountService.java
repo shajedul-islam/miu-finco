@@ -1,7 +1,5 @@
 package service.impl;
 
-import component.IComponent;
-import component.IRepository;
 import repository.IAccountRepository;
 import service.IAccountService;
 
