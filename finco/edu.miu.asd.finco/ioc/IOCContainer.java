@@ -9,7 +9,6 @@ import java.util.TreeMap;
 
 public class IOCContainer {
     public static Map<String, IComponent> componentMap;
-    public static Map<String, String> properties;
 
     public static void buildApplicationContext(InputStream inputStream) {
         Properties properties = new Properties();
