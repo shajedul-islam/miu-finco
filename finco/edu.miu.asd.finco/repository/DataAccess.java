@@ -7,7 +7,9 @@ import domain.impl.Entry;
 public interface DataAccess {
 
 	public void SaveAccount(Account account);
-	
+
+	public void updateAccount(Account account);
+
 	public Account getAccountByAccountNumber(String accNumber);
 	
 	public void SaveCustomer(Customer customer);

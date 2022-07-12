@@ -4,6 +4,7 @@ import java.util.List;
 
 import domain.impl.Account;
 import domain.impl.Entry;
+import domain.impl.TransactionType;
 import repository.IAccountRepository;
 import repository.IEntryRepository;
 import repository.impl.AccountRepository;
@@ -42,7 +43,15 @@ public class AccountService implements IAccountService {
 		
 		IEntryRepository entryRepository = new EntryRepository(); 
 		Account account = accountRepository.getAccountByAccountNumber(accNumber);
+		if(entry.getTransactionType() == TransactionType.Credit) {
+			account.setBalance(account.getBalance()+entry.getAmount());
+		}
+        else {
+			account.setBalance(account.getBalance()-entry.getAmount());
+		}
+
 		entry.setAccountId(account.getId());
 		entryRepository.addEntry(entry);
+		accountRepository.updateAccount(account);
 	}
 }

@@ -1,7 +1,11 @@
 import controller.AccountController;
 import controller.CustomerController;
+import domain.impl.Entry;
+import domain.impl.TransactionType;
 import ioc.IOCContainer;
 import notification.NotificationContext;
+
+import java.util.Date;
 
 public class Finco {
     public static void main(String[] args) throws ClassNotFoundException {
@@ -15,9 +19,9 @@ public class Finco {
 
         customerController.createCustomer(customer);
 */
-        // accountController.addEntry("02201016", new Entry(new Date(2022,01,01), 100, TransactionType.Credit ));
+        accountController.addEntry("02201016", new Entry(7.2, TransactionType.Debit ));
 
-        NotificationContext notificationContext = (NotificationContext) IOCContainer.componentMap.get("notificationContext");
-        notificationContext.send("j.shajid@gmail.com", "500$ Deposited.");
+        //NotificationContext notificationContext = (NotificationContext) IOCContainer.componentMap.get("notificationContext");
+        //notificationContext.send("j.shajid@gmail.com", "500$ Deposited.");
     }
 }

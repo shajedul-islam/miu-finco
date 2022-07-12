@@ -13,6 +13,8 @@ public abstract class Account implements IAccount, Serializable   {
     protected int customerId;
 	
     protected String accnr;
+
+    protected double balance;
    
     public int getId()
     {
@@ -38,10 +40,20 @@ public abstract class Account implements IAccount, Serializable   {
     {
     	return accnr;
     }
-   	 
+
+    public double getBalance()
+    {
+        return balance;
+    }
+
+    public void setBalance(double balance)
+    {
+        this.balance = balance;
+    }
 	public Account(String accnr)
 	{
-		this.accnr = accnr;	
+		this.accnr = accnr;
+        this.balance = 0;
 	}
 	
 }

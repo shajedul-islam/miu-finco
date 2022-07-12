@@ -48,13 +48,14 @@ public class DataAccessFacade implements DataAccess{
 	
 	@Override
 	public void SaveAccount(Account account) {
-		String sql = "INSERT INTO Account(CustomerId,AccountNumber) VALUES(?,?)";  
+		String sql = "INSERT INTO Account(CustomerId,AccountNumber,Balance) VALUES(?,?,?)";
 		   
         try{  
             Connection conn = this.connectNew(); 
             PreparedStatement pstmt = conn.prepareStatement(sql); 
             pstmt.setInt(1, account.getCustomerId());  
-            pstmt.setString(2, account.getAccNumber());  
+            pstmt.setString(2, account.getAccNumber());
+            pstmt.setDouble(3, account.getBalance());
             pstmt.executeUpdate();  
             
             int accountId = getLastRowId(conn);
@@ -64,10 +65,32 @@ public class DataAccessFacade implements DataAccess{
             conn.close();
         } catch (SQLException e) {  
             System.out.println(e.getMessage());  
-        }  
-		
+        }
 	}
-	
+
+    @Override
+    public void updateAccount(Account account) {
+        String sql = "Update Account SET Balance = ? , AccountNumber = ? , CustomerId = ? Where Id = ?";
+
+        try{
+            Connection conn = this.connectNew();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setDouble(1, account.getBalance());
+            pstmt.setString(2, account.getAccNumber());
+            pstmt.setDouble(3, account.getCustomerId());
+            pstmt.setDouble(4, account.getId());
+            pstmt.executeUpdate();
+
+            int accountId = getLastRowId(conn);
+
+            account.setId(accountId);
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void selectAll(){  
         String sql = "SELECT * FROM Account";  
           
@@ -120,7 +143,7 @@ public class DataAccessFacade implements DataAccess{
             Connection conn = this.connectNew(); 
             PreparedStatement pstmt = conn.prepareStatement(sql); 
             pstmt.setInt(1, entry.getAccountId());  
-            pstmt.setDate(2, entry.getDate()); 
+            pstmt.setString(2, entry.getDate());
             pstmt.setDouble(3, entry.getAmount()); 
             pstmt.setString(4, entry.getTransactionType().toString()); 
             pstmt.executeUpdate();  
@@ -142,6 +165,7 @@ public class DataAccessFacade implements DataAccess{
 		int id = 0;
 		String accountNo = "";
 		int customerId = 0;
+		double balance = 0;
 		Account account = new ConcreteAccount(accountNo);
         try {  
         	Connection conn = this.connectNew(); 
@@ -153,12 +177,15 @@ public class DataAccessFacade implements DataAccess{
             	id = rs.getInt("Id");
             	customerId = rs.getInt("CustomerId");
             	accountNo = rs.getString("AccountNumber");
+            	balance = rs.getDouble("Balance");
+            	
             }
             rs.close();
             conn.close();
 
             account = new ConcreteAccount(accountNo);
             account.setCustomerId(customerId);
+            account.setBalance(balance);
             account.setId(id);
             
         } catch (SQLException e) {  

@@ -27,7 +27,12 @@ public class AccountRepository implements IAccountRepository {
 		}
 		
 	}
-	
+
+	@Override
+	public void updateAccount(Account account) {
+		dataaccess.updateAccount(account);
+	}
+
 	@Override
 	public Account getAccountByAccountNumber(String accNumber) {
 		

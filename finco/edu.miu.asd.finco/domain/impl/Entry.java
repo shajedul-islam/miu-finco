@@ -2,7 +2,9 @@ package domain.impl;
 
 import domain.IEntry;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Entry implements IEntry {
 	
@@ -10,7 +12,7 @@ public class Entry implements IEntry {
 	
 	private int accountId; 
 	
-	private Date date ;
+	private String date ;
 	
 	private double amount ;
 	
@@ -36,7 +38,7 @@ public class Entry implements IEntry {
 	  this.accountId = id;
 	}
 	
-	public Date getDate()
+	public String getDate()
 	{
 	  return date;
 	}
@@ -51,9 +53,10 @@ public class Entry implements IEntry {
 	  return this.transactionType;
 	}
 	
-	public Entry(Date date, double amount, TransactionType transactionType)
+	public Entry(double amount, TransactionType transactionType)
 	{
-		this.date = date;
+		this.date = LocalDateTime.now()
+			       .format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		this.amount = amount;
 		this.transactionType = transactionType;
 	}
