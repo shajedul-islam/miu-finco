@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import domain.impl.Account;
+import domain.impl.ConcreteAccount;
 import domain.impl.Customer;
+import domain.impl.Entry;
 import repository.DataAccess;
 
 public class DataAccessFacade implements DataAccess{
@@ -67,22 +69,22 @@ public class DataAccessFacade implements DataAccess{
 	}
 	
     public void selectAll(){  
-	        String sql = "SELECT * FROM Account";  
-	          
-	        try {  
-	            Connection conn = this.connectNew();  
-	            java.sql.Statement stmt  = conn.createStatement();  
-	            ResultSet rs    = stmt.executeQuery(sql);  
-	              
-	            // loop through the result set  
-	            while (rs.next()) {  
-	                System.out.println(rs.getInt("Id") +  "\t" +   
-	                                   rs.getString("Name"));  
-	            }  
-	        } catch (SQLException e) {  
-	            System.out.println(e.getMessage());  
-	        }  
-	    }  
+        String sql = "SELECT * FROM Account";  
+          
+        try {  
+            Connection conn = this.connectNew();  
+            java.sql.Statement stmt  = conn.createStatement();  
+            ResultSet rs    = stmt.executeQuery(sql);  
+              
+            // loop through the result set  
+            while (rs.next()) {  
+                System.out.println(rs.getInt("Id") +  "\t" +   
+                                   rs.getString("Name"));  
+            }  
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+        }  
+	 }  
 	   
 	@Override
 	public void SaveCustomer(Customer customer) {
@@ -108,5 +110,60 @@ public class DataAccessFacade implements DataAccess{
         } catch (SQLException e) {  
             System.out.println(e.getMessage());  
         }  
+	}
+
+	@Override
+	public void saveEntry(Entry entry) {
+		String sql = "INSERT INTO Entry(AccountId,Date,Amount,TrasactionType) VALUES(?,?,?,?)";  
+		   
+        try{  
+            Connection conn = this.connectNew(); 
+            PreparedStatement pstmt = conn.prepareStatement(sql); 
+            pstmt.setInt(1, entry.getAccountId());  
+            pstmt.setDate(2, entry.getDate()); 
+            pstmt.setDouble(3, entry.getAmount()); 
+            pstmt.setString(4, entry.getTransactionType().toString()); 
+            pstmt.executeUpdate();  
+            
+            int entryId = getLastRowId(conn);
+            entry.setId(entryId);
+       
+            conn.close();
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+        } 
+		
+	}
+
+	@Override
+	public Account getAccountByAccountNumber(String accNumber) {
+		String sql = "SELECT * FROM Account where AccountNumber = '"+accNumber+"' limit 1";
+		//String sql = "SELECT * FROM Account";
+		int id = 0;
+		String accountNo = "";
+		int customerId = 0;
+		Account account = new ConcreteAccount(accountNo);
+        try {  
+        	Connection conn = this.connectNew(); 
+        	java.sql.Statement stmt  = conn.createStatement();  
+            ResultSet rs    = stmt.executeQuery(sql);  
+              
+            // loop through the result set  
+            while (rs.next()) { 
+            	id = rs.getInt("Id");
+            	customerId = rs.getInt("CustomerId");
+            	accountNo = rs.getString("AccountNumber");
+            }
+            rs.close();
+            conn.close();
+
+            account = new ConcreteAccount(accountNo);
+            account.setCustomerId(customerId);
+            account.setId(id);
+            
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+        }
+        return account;
 	} 
 }

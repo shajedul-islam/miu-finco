@@ -12,6 +12,7 @@ public class AccountRepository implements IAccountRepository {
 	{
 	  dataaccess = new DataAccessFacade();
 	}
+    
     public void test(String s) {
         System.out.println("--- AccountRepository test: " + s);
     }
@@ -26,4 +27,12 @@ public class AccountRepository implements IAccountRepository {
 		}
 		
 	}
+	
+	@Override
+	public Account getAccountByAccountNumber(String accNumber) {
+		
+		return dataaccess.getAccountByAccountNumber(accNumber);
+	}
+	
+	
 }

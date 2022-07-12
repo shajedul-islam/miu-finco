@@ -3,8 +3,11 @@ package service.impl;
 import java.util.List;
 
 import domain.impl.Account;
+import domain.impl.Entry;
 import repository.IAccountRepository;
+import repository.IEntryRepository;
 import repository.impl.AccountRepository;
+import repository.impl.EntryRepository;
 import service.IAccountService;
 
 public class AccountService implements IAccountService {
@@ -32,5 +35,14 @@ public class AccountService implements IAccountService {
 		{
 		  accountRepository.createAccount(ac);
 		}
+	}
+
+	@Override
+	public void addEntry(String accNumber, Entry entry) {
+		
+		IEntryRepository entryRepository = new EntryRepository(); 
+		Account account = accountRepository.getAccountByAccountNumber(accNumber);
+		entry.setAccountId(account.getId());
+		entryRepository.addEntry(entry);
 	}
 }

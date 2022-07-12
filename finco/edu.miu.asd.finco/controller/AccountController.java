@@ -30,5 +30,10 @@ public class AccountController implements IComponent {
     {
     	accountService.createAccount(account);
     }
+	
+	public void addEntry(String accNumber, Entry entry)
+	{
+		accountService.addEntry(accNumber, entry);
+	}
 
 }
