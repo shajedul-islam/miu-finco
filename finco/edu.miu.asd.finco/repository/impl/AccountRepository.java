@@ -1,7 +1,7 @@
 package repository.impl;
 
 import domain.impl.Account;
-import repository.DataAccessFacade;
+import repository.DataAccess;
 import repository.IAccountRepository;
 
 public class AccountRepository implements IAccountRepository {

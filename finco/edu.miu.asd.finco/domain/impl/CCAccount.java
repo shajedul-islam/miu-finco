@@ -2,9 +2,10 @@ package domain.impl;
 
 import domain.IAccount;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public abstract class CCAccount implements IAccount {
+public abstract class CCAccount implements IAccount, Serializable  {
 
 	protected String cc_number;
 	

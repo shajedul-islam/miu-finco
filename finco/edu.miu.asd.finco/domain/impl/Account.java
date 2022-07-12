@@ -1,8 +1,12 @@
 package domain.impl;
 
+import java.io.Serializable;
+
 import domain.IAccount;
 
-public abstract class Account implements IAccount  {
+public abstract class Account implements IAccount, Serializable   {
+	
+	private static final long serialVersionUID = -2226197306790714013L;
 	
     protected String accnr;
     

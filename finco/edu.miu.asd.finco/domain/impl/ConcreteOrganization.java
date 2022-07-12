@@ -1,8 +1,10 @@
 package domain.impl;
 
+import java.io.Serializable;
+
 import domain.IOrganization;
 
-public class ConcreteOrganization extends Customer implements IOrganization {
+public class ConcreteOrganization extends Customer implements IOrganization, Serializable  {
 
 	public int no_of_employees;
 	

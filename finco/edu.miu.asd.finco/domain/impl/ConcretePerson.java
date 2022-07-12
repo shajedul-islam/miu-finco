@@ -2,9 +2,10 @@ package domain.impl;
 
 import domain.IPerson;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ConcretePerson extends Customer implements IPerson {
+public class ConcretePerson extends Customer implements IPerson, Serializable {
 
 	public Date birthdate;
 	

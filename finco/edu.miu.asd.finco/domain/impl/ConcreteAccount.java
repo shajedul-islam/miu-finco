@@ -3,7 +3,7 @@ package domain.impl;
 import java.io.Serializable;
 import java.sql.Date;
 
-public class ConcreteAccount extends Account implements Serializable {
+public class ConcreteAccount extends Account {
 
     private double interest_rate = 0;
     
@@ -19,11 +19,11 @@ public class ConcreteAccount extends Account implements Serializable {
     
 	public ConcreteAccount(String accnr, String nm, String ste, String ct, String sta, String zp, String em, int noofemp) {
 		super(accnr);
-		super.customer = new ConcreteOrganization(nm, ste, ct, sta, zp, em, noofemp);		
+		//super.customer = new ConcreteOrganization(nm, ste, ct, sta, zp, em, noofemp);		
 	}
 	
 	public ConcreteAccount(String accnr, String nm, String ste, String ct, String sta, String zp, String em, Date db) {
 		super(accnr);
-		super.customer = new ConcretePerson(nm, ste, ct, sta, zp, em, db);		
+		//super.customer = new ConcretePerson(nm, ste, ct, sta, zp, em, db);		
 	}
 }

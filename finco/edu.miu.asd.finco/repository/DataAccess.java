@@ -1,4 +1,4 @@
-package repository.impl;
+package repository;
 
 import domain.impl.Account;
 import domain.impl.Customer;
