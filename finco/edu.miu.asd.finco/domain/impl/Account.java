@@ -2,12 +2,17 @@ package domain.impl;
 
 import domain.IAccount;
 
-public abstract class Account implements IAccount {
+public abstract class Account implements IAccount  {
 	
     protected String accnr;
     
     protected Customer customer;
     
+    public String getAccNumber()
+    {
+    	return accnr;
+    }
+   
     public Customer getCustomer()
     {
     	return customer;

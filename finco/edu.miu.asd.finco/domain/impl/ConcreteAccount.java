@@ -1,8 +1,9 @@
 package domain.impl;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class ConcreteAccount extends Account {
+public class ConcreteAccount extends Account implements Serializable {
 
     private double interest_rate = 0;
     

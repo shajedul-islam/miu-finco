@@ -1,5 +1,6 @@
 package service.impl;
 
+import domain.impl.Account;
 import repository.IAccountRepository;
 import service.IAccountService;
 
@@ -14,4 +15,9 @@ public class AccountService implements IAccountService {
     public IAccountRepository getAccountRepository() {
         return accountRepository;
     }
+
+	@Override
+	public void CreateAccount(Account account) {
+		accountRepository.CreateAccount(account);
+	}
 }
