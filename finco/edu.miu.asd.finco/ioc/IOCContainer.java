@@ -9,6 +9,7 @@ import java.util.TreeMap;
 
 public class IOCContainer {
     public static Map<String, IComponent> componentMap;
+    public static Map<String, String> properties;
 
     public static void buildApplicationContext(InputStream inputStream) {
         Properties properties = new Properties();
@@ -33,11 +34,16 @@ public class IOCContainer {
 
                     Class clz = Class.forName(val);
                     componentMap.put(componentName, (IComponent) clz.getDeclaredConstructor().newInstance());
-                } else {
+                } else if (keyName.contains("dependency.")) {
                     String[] keys = keyName.split("\\.");
-                    IComponent obj = componentMap.get(keys[0].split("\\-")[1]);
-                    PropertyDescriptor objPropertyDescriptor = new PropertyDescriptor(keys[1], obj.getClass());
+                    IComponent obj = componentMap.get(keys[1]);
+                    PropertyDescriptor objPropertyDescriptor = new PropertyDescriptor(keys[2], obj.getClass());
                     objPropertyDescriptor.getWriteMethod().invoke(obj, componentMap.get(val));
+                } else if (keyName.contains("property.")) {
+                    String[] keys = keyName.split("\\.");
+                    IComponent obj = componentMap.get(keys[1]);
+                    PropertyDescriptor objPropertyDescriptor = new PropertyDescriptor(keys[2], obj.getClass());
+                    objPropertyDescriptor.getWriteMethod().invoke(obj, val);
                 }
             }
         } catch (Exception e) {
