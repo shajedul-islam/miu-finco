@@ -17,7 +17,7 @@ public class AccountRepository implements IAccountRepository {
     }
 
 	@Override
-	public void CreateAccount(Account account) {
+	public void createAccount(Account account) {
 		try {
 			dataaccess.SaveAccount(account);
 		} catch (Exception e) {

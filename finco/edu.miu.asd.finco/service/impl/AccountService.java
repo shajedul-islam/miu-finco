@@ -20,17 +20,17 @@ public class AccountService implements IAccountService {
     }
 
 	@Override
-	public void CreateAccount(Account account) {
-		accountRepository.CreateAccount(account);
+	public void createAccount(Account account) {
+		accountRepository.createAccount(account);
 	}
 
 	@Override
-	public void CreateAccount(List<Account> accounts) {
+	public void createAccount(List<Account> accounts) {
 	
 		accountRepository = new AccountRepository();
 		for(Account ac : accounts)
 		{
-		  accountRepository.CreateAccount(ac);
+		  accountRepository.createAccount(ac);
 		}
 	}
 }

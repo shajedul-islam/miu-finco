@@ -13,7 +13,7 @@ public class CustomerRepository implements ICustomerRepository{
 	}
 	
 	@Override
-	public void CreateCustomer(Customer customer) {
+	public void createCustomer(Customer customer) {
 		
 		dataaccess.SaveCustomer(customer);
 	}

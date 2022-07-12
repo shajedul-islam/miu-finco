@@ -28,7 +28,7 @@ public class AccountController implements IComponent {
 
 	public void CreateAccount(Account account)
     {
-    	accountService.CreateAccount(account);
+    	accountService.createAccount(account);
     }
 
 }

@@ -25,19 +25,19 @@ public class CustomerService implements ICustomerService{
     }
     
 	@Override
-	public void CreateCustomer(Customer customer) {	
+	public void createCustomer(Customer customer) {	
 		
 		customerRepository = new CustomerRepository();
 		accountRepository = new AccountRepository();
 		
-		customerRepository.CreateCustomer(customer);
+		customerRepository.createCustomer(customer);
 		
 		List<Account> accounts = customer.getAccounts();
 		
 		for(Account ac : accounts)
 		{
 			ac.setCustomerId(customer.getId());
-			accountRepository.CreateAccount(ac);
+			accountRepository.createAccount(ac);
 		}
 	}
 

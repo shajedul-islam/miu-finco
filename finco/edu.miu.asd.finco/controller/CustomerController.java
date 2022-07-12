@@ -18,7 +18,7 @@ public class CustomerController implements IComponent{
 	
 	public void createCustomer(Customer customer)
     {
-		customerService.CreateCustomer(customer);
+		customerService.createCustomer(customer);
 		
 		System.out.println("Ho");
 		
