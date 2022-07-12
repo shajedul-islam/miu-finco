@@ -46,12 +46,13 @@ public class DataAccessFacade implements DataAccess{
 	
 	@Override
 	public void SaveAccount(Account account) {
-		String sql = "INSERT INTO Account(AccountNumber) VALUES(?)";  
+		String sql = "INSERT INTO Account(CustomerId,AccountNumber) VALUES(?,?)";  
 		   
         try{  
             Connection conn = this.connectNew(); 
             PreparedStatement pstmt = conn.prepareStatement(sql); 
-            pstmt.setString(1, account.getAccNumber());  
+            pstmt.setInt(1, account.getCustomerId());  
+            pstmt.setString(2, account.getAccNumber());  
             pstmt.executeUpdate();  
             
             int accountId = getLastRowId(conn);
@@ -101,7 +102,8 @@ public class DataAccessFacade implements DataAccess{
             pstmt.executeUpdate();  
             
             int customerId = getLastRowId(conn);
-        
+            customer.setId(customerId);
+       
             conn.close();
         } catch (SQLException e) {  
             System.out.println(e.getMessage());  

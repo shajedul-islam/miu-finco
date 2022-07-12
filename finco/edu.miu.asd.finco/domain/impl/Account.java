@@ -10,9 +10,9 @@ public abstract class Account implements IAccount, Serializable   {
 	
 	protected int id;
 	
+    protected int customerId;
+	
     protected String accnr;
-    
-    //protected Customer customer;
    
     public int getId()
     {
@@ -24,26 +24,24 @@ public abstract class Account implements IAccount, Serializable   {
     	this.id = id;
     }
     
+    public int getCustomerId()
+    {
+      return customerId;
+    }
+    
+    public void setCustomerId(int customerId)
+    {
+    	this.customerId = customerId;
+    }
+    
     public String getAccNumber()
     {
     	return accnr;
     }
-   
-//    public Customer getCustomer()
-//    {
-//    	return customer;
-//    }
-//    
-//    public void setCustomer(Customer customer)
-//    {
-//    	this.customer =  customer;
-//    }
-	
-    
+   	 
 	public Account(String accnr)
 	{
-		this.accnr = accnr;
-		
+		this.accnr = accnr;	
 	}
 	
 }

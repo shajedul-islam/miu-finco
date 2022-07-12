@@ -7,6 +7,8 @@ import domain.ICustomer;
 
 public abstract class Customer implements ICustomer {
 	
+	protected int Id;
+	
     protected String name;
 	
     protected String street;
@@ -22,6 +24,16 @@ public abstract class Customer implements ICustomer {
     protected List<Account> accounts;
 	
     protected List<CCAccount> ccaccounts;
+	
+    public int getId()
+	{
+		return Id;
+	}
+	
+	public void setId(int id)
+	{
+		this.Id = id;
+	}
 	
 	public String getName()
 	{
@@ -88,9 +100,19 @@ public abstract class Customer implements ICustomer {
 	  accounts.add(acc);
 	}
 	
+	public List<Account> getAccounts()
+	{
+		return accounts;
+	}
+	
 	public void AddAccount(CCAccount ccacc)
 	{
 		ccaccounts.add(ccacc);
+	}
+	
+	public List<CCAccount> getCCAccounts()
+	{
+		return ccaccounts;
 	}
 	
 	public Customer(String nm, String ste, String ct, String sta, String zp, String em)

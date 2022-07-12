@@ -4,6 +4,7 @@ import java.util.List;
 
 import domain.impl.Account;
 import repository.IAccountRepository;
+import repository.impl.AccountRepository;
 import service.IAccountService;
 
 public class AccountService implements IAccountService {
@@ -26,6 +27,7 @@ public class AccountService implements IAccountService {
 	@Override
 	public void CreateAccount(List<Account> accounts) {
 	
+		accountRepository = new AccountRepository();
 		for(Account ac : accounts)
 		{
 		  accountRepository.CreateAccount(ac);
