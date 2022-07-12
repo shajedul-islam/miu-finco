@@ -1,20 +1,5 @@
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import controller.AccountController;
 import controller.CustomerController;
-import domain.impl.ConcreteAccount;
-import domain.impl.ConcreteOrganization;
-import domain.impl.Customer;
-import domain.impl.Entry;
-import domain.impl.TransactionType;
-import factory.AbstractAccountFactory;
-import factory.AccountFactory;
-import factory.AccountType;
 import ioc.IOCContainer;
 import notification.NotificationContext;
 
