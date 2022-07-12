@@ -13,7 +13,7 @@ public abstract class CCAccount implements IAccount, Serializable  {
 	
 	protected double last_month_balance = 0;
 	
-	protected Customer customer;
+	//protected Customer customer;
 	
 	public String getAccnr()
 	{
@@ -30,15 +30,15 @@ public abstract class CCAccount implements IAccount, Serializable  {
 		return last_month_balance;
 	}
 	
-	public Customer getCustomer()
-    {
-    	return customer;
-    }
-    
-    public void setCustomer(Customer customer)
-    {
-    	this.customer =  customer;
-    }
+//	public Customer getCustomer()
+//    {
+//    	return customer;
+//    }
+//    
+//    public void setCustomer(Customer customer)
+//    {
+//    	this.customer =  customer;
+//    }
 	
 	public CCAccount(String cc_number, Date exp_date)
 	{

@@ -23,7 +23,26 @@ public class DataAccessFacade implements DataAccess{
             System.out.println(e.getMessage());  
         }  
         return conn;  
-	}  
+	}
+	
+	private int getLastRowId(Connection conn) 
+	{
+		String sql  = "select last_insert_rowid() as Last";
+		int maxId = 0;
+		try
+		{
+	        PreparedStatement pstmt1 = conn.prepareStatement(sql); 
+	        
+	        ResultSet rs1 = pstmt1.executeQuery();
+	        maxId=  rs1.getInt("Last");
+	        rs1.close();
+	        return maxId;
+		}
+		catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+        } 
+		return maxId;
+	}
 	
 	@Override
 	public void SaveAccount(Account account) {
@@ -34,14 +53,19 @@ public class DataAccessFacade implements DataAccess{
             PreparedStatement pstmt = conn.prepareStatement(sql); 
             pstmt.setString(1, account.getAccNumber());  
             pstmt.executeUpdate();  
-            //conn.close();
+            
+            int accountId = getLastRowId(conn);
+            
+            account.setId(accountId);
+          
+            conn.close();
         } catch (SQLException e) {  
             System.out.println(e.getMessage());  
         }  
 		
 	}
 	
-	 public void selectAll(){  
+    public void selectAll(){  
 	        String sql = "SELECT * FROM Account";  
 	          
 	        try {  
@@ -59,10 +83,28 @@ public class DataAccessFacade implements DataAccess{
 	        }  
 	    }  
 	   
-
 	@Override
 	public void SaveCustomer(Customer customer) {
-		// TODO Auto-generated method stub
 		
+		String sql = "INSERT INTO Customer(Name,Street,City,State,Zip,Email,BirthDate) VALUES(?,?,?,?,?,?,?)";  
+		   
+        try{  
+            Connection conn = this.connectNew(); 
+            PreparedStatement pstmt = conn.prepareStatement(sql); 
+            pstmt.setString(1, customer.getName());  
+            pstmt.setString(2, customer.getStreet()); 
+            pstmt.setString(3, customer.getCity()); 
+            pstmt.setString(4, customer.getState()); 
+            pstmt.setString(5, customer.getZip()); 
+            pstmt.setString(6, customer.getEmail()); 
+            pstmt.setString(7, "2022/02/02");
+            pstmt.executeUpdate();  
+            
+            int customerId = getLastRowId(conn);
+        
+            conn.close();
+        } catch (SQLException e) {  
+            System.out.println(e.getMessage());  
+        }  
 	} 
 }

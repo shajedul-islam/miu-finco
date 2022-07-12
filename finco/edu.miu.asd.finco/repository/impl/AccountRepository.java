@@ -10,7 +10,7 @@ public class AccountRepository implements IAccountRepository {
 	
 	public AccountRepository()
 	{
-		dataaccess = new DataAccessFacade();
+	  dataaccess = new DataAccessFacade();
 	}
     public void test(String s) {
         System.out.println("--- AccountRepository test: " + s);
@@ -18,7 +18,12 @@ public class AccountRepository implements IAccountRepository {
 
 	@Override
 	public void CreateAccount(Account account) {
-		dataaccess.SaveAccount(account);
+		try {
+			dataaccess.SaveAccount(account);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 }

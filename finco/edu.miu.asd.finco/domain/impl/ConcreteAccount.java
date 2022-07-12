@@ -17,13 +17,7 @@ public class ConcreteAccount extends Account {
       this.interest_rate = interestRate;
     }
     
-	public ConcreteAccount(String accnr, String nm, String ste, String ct, String sta, String zp, String em, int noofemp) {
+	public ConcreteAccount(String accnr) {
 		super(accnr);
-		//super.customer = new ConcreteOrganization(nm, ste, ct, sta, zp, em, noofemp);		
-	}
-	
-	public ConcreteAccount(String accnr, String nm, String ste, String ct, String sta, String zp, String em, Date db) {
-		super(accnr);
-		//super.customer = new ConcretePerson(nm, ste, ct, sta, zp, em, db);		
 	}
 }

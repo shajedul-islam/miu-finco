@@ -1,20 +1,27 @@
 package domain.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import domain.ICustomer;
 
 public abstract class Customer implements ICustomer {
 	
-    public String name;
+    protected String name;
 	
-	public String street;
+    protected String street;
 	
-	public String city;
+    protected String city;
 	
-	public String state;
+    protected String state;
 	
-	public String zip;
+    protected String zip;
 	
-	public String email;
+    protected String email;
+	
+    protected List<Account> accounts;
+	
+    protected List<CCAccount> ccaccounts;
 	
 	public String getName()
 	{
@@ -76,6 +83,16 @@ public abstract class Customer implements ICustomer {
 		this.email = email;
 	}
 	
+	public void AddAccount(Account acc)
+	{
+	  accounts.add(acc);
+	}
+	
+	public void AddAccount(CCAccount ccacc)
+	{
+		ccaccounts.add(ccacc);
+	}
+	
 	public Customer(String nm, String ste, String ct, String sta, String zp, String em)
 	{
 		this.name = nm;
@@ -84,5 +101,7 @@ public abstract class Customer implements ICustomer {
 		this.state = sta;
 		this.zip = zp;
 		this.email = em;
+		this.accounts = new ArrayList<Account>();
+		this.ccaccounts = new ArrayList<CCAccount>();
 	}
 }

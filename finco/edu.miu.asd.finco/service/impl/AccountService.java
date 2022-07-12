@@ -1,5 +1,7 @@
 package service.impl;
 
+import java.util.List;
+
 import domain.impl.Account;
 import repository.IAccountRepository;
 import service.IAccountService;
@@ -19,5 +21,14 @@ public class AccountService implements IAccountService {
 	@Override
 	public void CreateAccount(Account account) {
 		accountRepository.CreateAccount(account);
+	}
+
+	@Override
+	public void CreateAccount(List<Account> accounts) {
+	
+		for(Account ac : accounts)
+		{
+		  accountRepository.CreateAccount(ac);
+		}
 	}
 }
