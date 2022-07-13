@@ -5,8 +5,6 @@ import ioc.IComponent;
 import project.bank.edu.miu.asd.bank.domain.BankAccount;
 import project.bank.edu.miu.asd.bank.service.IBankAccountService;
 import project.bank.edu.miu.asd.bank.service.IBankCustomerService;
-import service.IAccountService;
-import service.ICustomerService;
 
 public class BankAccountController implements IComponent {
     private IBankAccountService accountService;

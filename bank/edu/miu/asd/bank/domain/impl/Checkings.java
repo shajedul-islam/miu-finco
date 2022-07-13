@@ -1,19 +1,21 @@
 package project.bank.edu.miu.asd.bank.domain.impl;
 
-import domain.impl.Account;
 import project.bank.edu.miu.asd.bank.domain.BankAccount;
 
 public class Checkings extends BankAccount {
-    private double interest_rate = 1.0;
-    public double getInterestRate()
-    {
-    	return interest_rate;
-    }
-    public void setInterestRate(double interestRate)
-    {
-      this.interest_rate = interestRate;
-    }
-	public Checkings(String accnr) {
+    /*private static final double interest_rate = 1.0;*/
+
+	public Checkings(String accnr, String personOrCompany, int customerId) {
 		super(accnr);
+        this.customerId = customerId;
+        this.account_type = "Checkins";
+        interest_rate = 1.0;
+        this.setCompany_or_person(personOrCompany);
 	}
+
+    public Checkings(String accountNo) {
+        super(accountNo);
+        this.account_type = "Checkins";
+        interest_rate = 1.0;
+    }
 }

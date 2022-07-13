@@ -19,7 +19,10 @@ public abstract class Account implements IAccount, Serializable   {
     protected String companyOrPerson;
 
     protected double balance;
-   
+
+    public Account() {
+    }
+
     public int getId()
     {
     	return id;

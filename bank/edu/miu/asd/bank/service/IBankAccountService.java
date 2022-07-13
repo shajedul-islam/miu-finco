@@ -1,6 +1,5 @@
 package project.bank.edu.miu.asd.bank.service;
 
-import domain.impl.Account;
 import domain.impl.Entry;
 import ioc.IComponent;
 import project.bank.edu.miu.asd.bank.domain.BankAccount;

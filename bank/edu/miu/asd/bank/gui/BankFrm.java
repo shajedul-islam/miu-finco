@@ -1,8 +1,8 @@
 package project.bank.edu.miu.asd.bank.gui;//package project.bank;
 
-import java.awt.*;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 
 /**
  * A basic JFC based application.

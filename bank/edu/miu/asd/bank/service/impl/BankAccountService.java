@@ -6,11 +6,8 @@ import project.bank.edu.miu.asd.bank.domain.BankAccount;
 import project.bank.edu.miu.asd.bank.repository.IBankAccountRepository;
 import project.bank.edu.miu.asd.bank.repository.impl.BankAccountRepository;
 import project.bank.edu.miu.asd.bank.service.IBankAccountService;
-import repository.IAccountRepository;
 import repository.IEntryRepository;
-import repository.impl.AccountRepository;
 import repository.impl.EntryRepository;
-import service.IAccountService;
 
 import java.util.List;
 

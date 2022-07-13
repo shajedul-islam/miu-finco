@@ -1,7 +1,5 @@
 package project.bank.edu.miu.asd.bank.domain;
 
-import domain.impl.Account;
-import domain.impl.CCAccount;
 import domain.impl.Customer;
 
 import java.util.List;

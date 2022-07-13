@@ -1,14 +1,10 @@
 package project.bank.edu.miu.asd.bank.repository.impl;
 
-import domain.impl.Account;
-import domain.impl.ConcreteAccount;
-import domain.impl.Customer;
 import domain.impl.Entry;
 import project.bank.edu.miu.asd.bank.domain.BankAccount;
 import project.bank.edu.miu.asd.bank.domain.BankCustomer;
 import project.bank.edu.miu.asd.bank.domain.impl.Checkings;
 import project.bank.edu.miu.asd.bank.repository.BankDataAccess;
-import repository.DataAccess;
 
 import java.sql.*;
 
@@ -17,7 +13,7 @@ public class DataAccessFacadeBank implements BankDataAccess{
 	private Connection connectNew() 
 	{  
         // SQLite connection string  
-        String url = "jdbc:sqlite:E:/MIU/sql/bank.db";
+        String url = "jdbc:sqlite:E:/MIU/ASD/LAB/miu-finco/bank/bank.db";
         //String url = "jdbc:sqlite:bank.db";
         Connection conn = null;  
         try {  
@@ -49,7 +45,7 @@ public class DataAccessFacadeBank implements BankDataAccess{
 	
 	@Override
 	public void SaveAccount(BankAccount account) {
-		String sql = "INSERT INTO Account(CustomerId,AccountNumber, AccountType,CompanyOrPerson) VALUES(?,?,?,?)";
+		String sql = "INSERT INTO Account(CustomerId,AccountNumber, AccountType,CompanyPerson) VALUES(?,?,?,?)";
 		   
         try{  
             Connection conn = this.connectNew(); 
@@ -124,7 +120,7 @@ public class DataAccessFacadeBank implements BankDataAccess{
             Connection conn = this.connectNew(); 
             PreparedStatement pstmt = conn.prepareStatement(sql); 
             pstmt.setInt(1, entry.getAccountId());  
-            pstmt.setDate(2, entry.getDate()); 
+            pstmt.setString(2, entry.getDate());
             pstmt.setDouble(3, entry.getAmount()); 
             pstmt.setString(4, entry.getTransactionType().toString()); 
             pstmt.executeUpdate();  

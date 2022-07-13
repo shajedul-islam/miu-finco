@@ -1,7 +1,6 @@
 package project.bank.edu.miu.asd.bank.domain.impl;
 
 import domain.IPerson;
-import domain.impl.Customer;
 import project.bank.edu.miu.asd.bank.domain.BankCustomer;
 
 import java.io.Serializable;

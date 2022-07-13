@@ -1,12 +1,8 @@
 package project.bank.edu.miu.asd.bank.repository.impl;
 
-import domain.impl.Account;
 import project.bank.edu.miu.asd.bank.domain.BankAccount;
 import project.bank.edu.miu.asd.bank.repository.BankDataAccess;
 import project.bank.edu.miu.asd.bank.repository.IBankAccountRepository;
-import repository.DataAccess;
-import repository.IAccountRepository;
-import repository.impl.DataAccessFacade;
 
 public class BankAccountRepository implements IBankAccountRepository {
 

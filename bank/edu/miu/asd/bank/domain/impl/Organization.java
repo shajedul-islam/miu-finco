@@ -1,8 +1,6 @@
 package project.bank.edu.miu.asd.bank.domain.impl;
 
 import domain.IOrganization;
-import domain.impl.Customer;
-import project.bank.edu.miu.asd.bank.domain.BankAccount;
 import project.bank.edu.miu.asd.bank.domain.BankCustomer;
 
 import java.io.Serializable;
