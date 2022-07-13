@@ -23,4 +23,5 @@ public interface DataAccess extends IComponent {
     public Customer getCustomerById(int custId);
 
     public List<Customer> getallCustomer();
+    public List<Account> getallAccount();
 }

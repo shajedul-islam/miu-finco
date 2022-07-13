@@ -135,6 +135,11 @@ public class DataAccessFacade implements DataAccess {
     }
 
     @Override
+    public List<Account> getallAccount() {
+        return new ArrayList<>();
+    }
+
+    @Override
     public void SaveCustomer(Customer customer) {
 
         String sql = "INSERT INTO Customer(Name,Street,City,State,Zip,Email) VALUES(?,?,?,?,?,?)";
