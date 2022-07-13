@@ -1,8 +1,6 @@
-package project.bank;
+package project.bank.edu.miu.asd.bank.gui;//package project.bank;
 
 import java.awt.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.ActionEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
 
@@ -197,8 +195,8 @@ public class BankFrm extends javax.swing.JFrame
 	void JButtonPerAC_actionPerformed(java.awt.event.ActionEvent event)
 	{
 		/*
-		 JDialog_AddPAcc type object is for adding personal information
-		 construct a JDialog_AddPAcc type object 
+		 project.bank.edu.miu.asd.bank.gui.JDialog_AddPAcc type object is for adding personal information
+		 construct a project.bank.edu.miu.asd.bank.gui.JDialog_AddPAcc type object
 		 set the boundaries and show it 
 		*/
 		
@@ -226,7 +224,7 @@ public class BankFrm extends javax.swing.JFrame
 	void JButtonCompAC_actionPerformed(java.awt.event.ActionEvent event)
 	{
 		/*
-		 construct a JDialog_AddCompAcc type object 
+		 construct a project.bank.edu.miu.asd.bank.gui.JDialog_AddCompAcc type object
 		 set the boundaries and 
 		 show it 
 		*/

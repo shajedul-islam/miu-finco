@@ -1,9 +1,6 @@
-/**
+package project.bank.edu.miu.asd.bank.gui; /**
 		A basic implementation of the JDialog class.
 **/
-
-import java.awt.*;
-import javax.swing.*;
 
 public class JDialog_AddPAcc extends javax.swing.JDialog
 {
