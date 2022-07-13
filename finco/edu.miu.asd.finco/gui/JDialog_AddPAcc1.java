@@ -21,7 +21,7 @@ public class JDialog_AddPAcc1 extends javax.swing.JDialog {
         // what Visual Cafe can generate, or Visual Cafe may be unable to back
         // parses your Java file into its visual environment.
         //{{ INIT_CONTROLS
-        setTitle("Add personal account");
+        setTitle("Add account");
         setModal(true);
         getContentPane().setLayout(null);
         setSize(283, 303);

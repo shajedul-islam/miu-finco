@@ -65,7 +65,7 @@ public class FincoFrm extends javax.swing.JFrame {
         JTable1.setBounds(0, 0, 420, 0);
 //        rowdata = new Object[8];
 
-        JButton_PerAC.setText("Add personal account");
+        JButton_PerAC.setText("Add account");
         JPanel1.add(JButton_PerAC);
         JButton_PerAC.setBounds(24, 20, 192, 33);
         //JButton_CompAC.setText("Add company account");
