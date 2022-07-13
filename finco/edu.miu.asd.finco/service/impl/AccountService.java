@@ -13,6 +13,15 @@ import service.IAccountService;
 
 public class AccountService implements IAccountService {
     private IAccountRepository accountRepository;
+    private IEntryRepository entryRepository;
+
+    public IEntryRepository getEntryRepository() {
+        return entryRepository;
+    }
+
+    public void setEntryRepository(IEntryRepository entryRepository) {
+        this.entryRepository = entryRepository;
+    }
 
     public void setAccountRepository(IAccountRepository accountRepository) {
         System.out.println("--- AccountService.setAccountRepository()");
@@ -23,36 +32,29 @@ public class AccountService implements IAccountService {
         return accountRepository;
     }
 
-	@Override
-	public void createAccount(Account account) {
-		accountRepository.createAccount(account);
-	}
+    @Override
+    public void createAccount(Account account) {
+        accountRepository.createAccount(account);
+    }
 
-	@Override
-	public void createAccount(List<Account> accounts) {
-	
-		accountRepository = new AccountRepository();
-		for(Account ac : accounts)
-		{
-		  accountRepository.createAccount(ac);
-		}
-	}
+    @Override
+    public void createAccount(List<Account> accounts) {
+        for (Account ac : accounts) {
+            accountRepository.createAccount(ac);
+        }
+    }
 
-	@Override
-	public void addEntry(String accNumber, Entry entry) {
-		
-		accountRepository = new AccountRepository();
-		IEntryRepository entryRepository = new EntryRepository(); 
-		Account account = accountRepository.getAccountByAccountNumber(accNumber);
-		if(entry.getTransactionType() == TransactionType.Credit) {
-			account.setBalance(account.getBalance()+entry.getAmount());
-		}
-        else {
-			account.setBalance(account.getBalance()-entry.getAmount());
-		}
+    @Override
+    public void addEntry(String accNumber, Entry entry) {
+        Account account = accountRepository.getAccountByAccountNumber(accNumber);
+        if (entry.getTransactionType() == TransactionType.Credit) {
+            account.setBalance(account.getBalance() + entry.getAmount());
+        } else {
+            account.setBalance(account.getBalance() - entry.getAmount());
+        }
 
-		entry.setAccountId(account.getId());
-		entryRepository.addEntry(entry);
-		accountRepository.updateAccount(account);
-	}
+        entry.setAccountId(account.getId());
+        entryRepository.addEntry(entry);
+        accountRepository.updateAccount(account);
+    }
 }

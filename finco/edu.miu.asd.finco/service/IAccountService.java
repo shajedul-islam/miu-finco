@@ -7,7 +7,9 @@ import domain.impl.Entry;
 import ioc.IComponent;
 
 public interface IAccountService extends IComponent {
-	public void createAccount(Account account);
-	public void createAccount(List<Account> accounts);
-	public void addEntry(String accNumber, Entry entry);
+    public void createAccount(Account account);
+
+    public void createAccount(List<Account> accounts);
+
+    public void addEntry(String accNumber, Entry entry);
 }

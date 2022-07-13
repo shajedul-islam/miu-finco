@@ -1,11 +1,7 @@
 import controller.AccountController;
 import controller.CustomerController;
-import domain.impl.Entry;
-import domain.impl.TransactionType;
+import gui.FincoFrm;
 import ioc.IOCContainer;
-import notification.NotificationContext;
-
-import java.util.Date;
 
 import javax.swing.UIManager;
 
@@ -25,24 +21,22 @@ public class Finco {
 
         //NotificationContext notificationContext = (NotificationContext) IOCContainer.componentMap.get("notificationContext");
         //notificationContext.send("j.shajid@gmail.com", "500$ Deposited.");
-        
-        try {
-		    // Add the following code if you want the Look and Feel
-		    // to be set to the Look and Feel of the native system.
-		    
-		    try {
-		        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		    } 
-		    catch (Exception e) { 
-		    }
 
-			//Create a new instance of our application's frame, and make it visible.
-			(new FincoFrm()).setVisible(true);
-		} 
-		catch (Throwable t) {
-			t.printStackTrace();
-			//Ensure the application exits with an error condition.
-			System.exit(1);
-		}
+        try {
+            // Add the following code if you want the Look and Feel
+            // to be set to the Look and Feel of the native system.
+
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (Exception e) {
+            }
+
+            //Create a new instance of our application's frame, and make it visible.
+            (new FincoFrm()).setVisible(true);
+        } catch (Throwable t) {
+            t.printStackTrace();
+            //Ensure the application exits with an error condition.
+            System.exit(1);
+        }
     }
 }

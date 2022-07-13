@@ -4,5 +4,5 @@ import domain.impl.Entry;
 
 public interface IEntryService {
 
-	public void addEntry(Entry entry);
+    public void addEntry(Entry entry);
 }

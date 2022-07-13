@@ -8,17 +8,17 @@ import domain.impl.Entry;
 
 public interface DataAccess {
 
-	public void SaveAccount(Account account);
+    public void SaveAccount(Account account);
 
-	public void updateAccount(Account account);
+    public void updateAccount(Account account);
 
-	public Account getAccountByAccountNumber(String accNumber);
-	
-	public void SaveCustomer(Customer customer);
-	
-	public void saveEntry(Entry entry);
-	
-	public List<Account> getAccountByCustomerId(int custId);
-	
-	public List<Customer> getallCustomer();
+    public Account getAccountByAccountNumber(String accNumber);
+
+    public void SaveCustomer(Customer customer);
+
+    public void saveEntry(Entry entry);
+
+    public List<Account> getAccountByCustomerId(int custId);
+
+    public List<Customer> getallCustomer();
 }

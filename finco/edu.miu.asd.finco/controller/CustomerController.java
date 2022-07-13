@@ -9,25 +9,26 @@ import service.ICustomerService;
 import service.impl.AccountService;
 import service.impl.CustomerService;
 
-public class CustomerController implements IComponent{
+public class CustomerController implements IComponent {
 
-	private ICustomerService customerService;
-	
-	public  CustomerController()
-	{
-		customerService = new CustomerService();
-	}
-	
-	public void createCustomer(Customer customer)
-    {
-		customerService.createCustomer(customer);
-		
-		System.out.println("Ho");
-		
+    private ICustomerService customerService;
+
+    public CustomerController() {
     }
 
-	public List<Customer> getallCustomer() {
-		
-		return customerService.getallCustomer();
-	}
+    public void createCustomer(Customer customer) {
+        customerService.createCustomer(customer);
+    }
+
+    public List<Customer> getallCustomer() {
+        return customerService.getallCustomer();
+    }
+
+    public ICustomerService getCustomerService() {
+        return customerService;
+    }
+
+    public void setCustomerService(ICustomerService customerService) {
+        this.customerService = customerService;
+    }
 }
