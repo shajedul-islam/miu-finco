@@ -7,9 +7,9 @@ import domain.impl.ConcreteAccount;
 
 public class AccountFactory extends AbstractAccountFactory{
 
-	public Account CreateAccount(String accnr) {
+	public Account CreateAccount(String accnr,String at, String cop) {
 		
-	   return new ConcreteAccount(accnr);
+	   return new ConcreteAccount(accnr,at,cop);
 	}
 	
 }

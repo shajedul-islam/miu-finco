@@ -41,6 +41,7 @@ public class AccountService implements IAccountService {
 	@Override
 	public void addEntry(String accNumber, Entry entry) {
 		
+		accountRepository = new AccountRepository();
 		IEntryRepository entryRepository = new EntryRepository(); 
 		Account account = accountRepository.getAccountByAccountNumber(accNumber);
 		if(entry.getTransactionType() == TransactionType.Credit) {

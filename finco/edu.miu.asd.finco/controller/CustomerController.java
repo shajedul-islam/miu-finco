@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import domain.impl.Customer;
 import ioc.IComponent;
 import service.IAccountService;
@@ -23,4 +25,9 @@ public class CustomerController implements IComponent{
 		System.out.println("Ho");
 		
     }
+
+	public List<Customer> getallCustomer() {
+		
+		return customerService.getallCustomer();
+	}
 }

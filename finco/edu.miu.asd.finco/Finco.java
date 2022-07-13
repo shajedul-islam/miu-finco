@@ -7,6 +7,8 @@ import notification.NotificationContext;
 
 import java.util.Date;
 
+import javax.swing.UIManager;
+
 public class Finco {
     public static void main(String[] args) throws ClassNotFoundException {
         IOCContainer.buildApplicationContext(Finco.class.getResourceAsStream("finco-dependencies.properties"));
@@ -19,9 +21,28 @@ public class Finco {
 
         customerController.createCustomer(customer);
 */
-        accountController.addEntry("02201016", new Entry(7.2, TransactionType.Debit ));
+        //accountController.addEntry("02201016", new Entry(7.2, TransactionType.Debit ));
 
         //NotificationContext notificationContext = (NotificationContext) IOCContainer.componentMap.get("notificationContext");
         //notificationContext.send("j.shajid@gmail.com", "500$ Deposited.");
+        
+        try {
+		    // Add the following code if you want the Look and Feel
+		    // to be set to the Look and Feel of the native system.
+		    
+		    try {
+		        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		    } 
+		    catch (Exception e) { 
+		    }
+
+			//Create a new instance of our application's frame, and make it visible.
+			(new FincoFrm()).setVisible(true);
+		} 
+		catch (Throwable t) {
+			t.printStackTrace();
+			//Ensure the application exits with an error condition.
+			System.exit(1);
+		}
     }
 }

@@ -4,6 +4,7 @@ import domain.impl.*;
 import ioc.IComponent;
 import service.IAccountService;
 import service.ICustomerService;
+import service.impl.AccountService;
 
 public class AccountController implements IComponent {
     private IAccountService accountService;
@@ -33,6 +34,7 @@ public class AccountController implements IComponent {
 	
 	public void addEntry(String accNumber, Entry entry)
 	{
+		accountService = new AccountService();
 		accountService.addEntry(accNumber, entry);
 	}
 
