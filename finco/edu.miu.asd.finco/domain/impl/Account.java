@@ -29,7 +29,7 @@ public abstract class Account implements IAccount {
     @Override
     public void alert(String message) {
         for (IObserver observer : observers) {
-            observer.update("Balance > 400$");
+            observer.update(message);
         }
     }
 

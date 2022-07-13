@@ -19,7 +19,7 @@ public class DataAccessFacade implements DataAccess {
 
     private Connection connectNew() {
         // SQLite connection string  
-        String url = "jdbc:sqlite:C:/Users/Cheerleader/IdeaProjects/ASD/miu-finco/finco/simple.db";
+        String url = "jdbc:sqlite:C://ASD/finco.db";
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);

@@ -165,7 +165,7 @@ public class JDialog_AddPAcc1 extends javax.swing.JDialog {
 
         CustomerController customerController = (CustomerController) IOCContainer.componentMap.get("customerController");
 
-        Customer customer = new ConcretePerson(JTextField_NAME.getText(), JTextField_STR.getText(), JTextField_CT.getText(), JTextField_ST.getText(), JTextField_ZIP.getText(), "", null);
+        Customer customer = new ConcretePerson(JTextField_NAME.getText(), JTextField_STR.getText(), JTextField_CT.getText(), JTextField_ST.getText(), JTextField_ZIP.getText(), JTextField_EM.getText(), null);
         customer.AddAccount(new ConcreteAccount(JTextField_ACNR.getText(), parentframe.accountType, "P"));
 
         customerController.createCustomer(customer);
