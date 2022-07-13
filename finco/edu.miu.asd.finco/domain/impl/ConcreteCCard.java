@@ -4,13 +4,8 @@ import java.sql.Date;
 
 public class ConcreteCCard extends CCAccount {
 
-    public ConcreteCCard(String cc_number, Date exp_date, String nm, String ste, String ct, String sta, String zp, String em) {
+    public ConcreteCCard(String cc_number, Date exp_date) {
         super(cc_number, exp_date);
-        //super.customer = new ConcretePerson(nm, ste, ct, sta, zp, em, null);
     }
 
-    @Override
-    public void alert(String message) {
-        // TODO: implement later
-    }
 }

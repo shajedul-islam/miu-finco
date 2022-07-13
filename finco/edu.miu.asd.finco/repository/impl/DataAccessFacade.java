@@ -47,16 +47,14 @@ public class DataAccessFacade implements DataAccess {
 
     @Override
     public void SaveAccount(Account account) {
-        String sql = "INSERT INTO Account(CustomerId,AccountNumber,PersonOrCompany,AccountType,Balance) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO Account(CustomerId,AccountNumber,Balance) VALUES(?,?,?)";
 
         try {
             Connection conn = this.connectNew();
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, account.getCustomerId());
             pstmt.setString(2, account.getAccNumber());
-            pstmt.setString(3, account.getCompanyOrPerson());
-            pstmt.setString(4, account.getAccountType());
-            pstmt.setDouble(5, account.getBalance());
+            pstmt.setDouble(3, account.getBalance());
             pstmt.executeUpdate();
 
             int accountId = getLastRowId(conn);
@@ -103,7 +101,6 @@ public class DataAccessFacade implements DataAccess {
         String state = "";
         String zip = "";
         String email = "";
-        String birthdate = "";
 
         List<Customer> customers = new ArrayList<Customer>();
 
@@ -121,7 +118,7 @@ public class DataAccessFacade implements DataAccess {
                 state = rs.getString("State");
                 zip = rs.getString("Zip");
                 email = rs.getString("Email");
-                Customer c = new ConcretePerson(name, street, city, state, zip, email, null);
+                Customer c = new ConcretePerson(name, street, city, state, zip, email);
                 c.setId(id);
                 customers.add(c);
             }
@@ -140,7 +137,7 @@ public class DataAccessFacade implements DataAccess {
     @Override
     public void SaveCustomer(Customer customer) {
 
-        String sql = "INSERT INTO Customer(Name,Street,City,State,Zip,Email,BirthDate) VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Customer(Name,Street,City,State,Zip,Email) VALUES(?,?,?,?,?,?)";
 
         try {
             Connection conn = this.connectNew();
@@ -151,7 +148,6 @@ public class DataAccessFacade implements DataAccess {
             pstmt.setString(4, customer.getState());
             pstmt.setString(5, customer.getZip());
             pstmt.setString(6, customer.getEmail());
-            pstmt.setString(7, "2022/02/02");
             pstmt.executeUpdate();
 
             int customerId = getLastRowId(conn);
@@ -193,10 +189,8 @@ public class DataAccessFacade implements DataAccess {
         int id = 0;
         String accountNo = "";
         int customerId = 0;
-        String personOrCompany = "";
-        String accountType = "";
         double balance = 0;
-        Account account = new ConcreteAccount(accountNo, accountType, personOrCompany);
+        Account account = new ConcreteAccount(accountNo);
         try {
             Connection conn = this.connectNew();
             java.sql.Statement stmt = conn.createStatement();
@@ -207,15 +201,12 @@ public class DataAccessFacade implements DataAccess {
                 id = rs.getInt("Id");
                 customerId = rs.getInt("CustomerId");
                 accountNo = rs.getString("AccountNumber");
-                personOrCompany = rs.getString("PersonOrCompany");
-                accountType = rs.getString("AccountType");
                 balance = rs.getDouble("Balance");
-
             }
             rs.close();
             conn.close();
 
-            account = new ConcreteAccount(accountNo, accountType, personOrCompany);
+            account = new ConcreteAccount(accountNo);
             account.setCustomerId(customerId);
             account.setBalance(balance);
             account.setId(id);
@@ -231,13 +222,11 @@ public class DataAccessFacade implements DataAccess {
         String sql = "SELECT * FROM Account where CustomerId = " + custId;
         int id = 0;
         String accountNo = "";
-        String personOrCompany = "";
-        String accountType = "";
         int customerId = 0;
         double balance = 0;
         List<Account> accounts = new ArrayList<Account>();
 
-        Account account = new ConcreteAccount(accountNo, accountType, personOrCompany);
+        Account account = new ConcreteAccount(accountNo);
         try {
             Connection conn = this.connectNew();
             java.sql.Statement stmt = conn.createStatement();
@@ -248,10 +237,8 @@ public class DataAccessFacade implements DataAccess {
                 id = rs.getInt("Id");
                 customerId = rs.getInt("CustomerId");
                 accountNo = rs.getString("AccountNumber");
-                personOrCompany = rs.getString("PersonOrCompany");
-                accountType = rs.getString("AccountType");
                 balance = rs.getDouble("Balance");
-                account = new ConcreteAccount(accountNo, accountType, personOrCompany);
+                account = new ConcreteAccount(accountNo);
                 account.setCustomerId(customerId);
                 account.setBalance(balance);
                 account.setId(id);

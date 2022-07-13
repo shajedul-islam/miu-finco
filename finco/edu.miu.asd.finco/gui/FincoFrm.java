@@ -33,10 +33,10 @@ public class FincoFrm extends javax.swing.JFrame {
     public FincoFrm() {
         myframe = this;
 
-        setTitle("Banking Application.");
+        setTitle("Finco.");
         setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout(0, 0));
-        setSize(575, 310);
+        setSize(600, 350);
         setVisible(false);
         JPanel1.setLayout(null);
         getContentPane().add(BorderLayout.CENTER, JPanel1);
@@ -52,8 +52,8 @@ public class FincoFrm extends javax.swing.JFrame {
         model.addColumn("AcctNr");
         model.addColumn("Name");
         model.addColumn("City");
-        model.addColumn("P/C");
-        model.addColumn("Ch/S");
+        model.addColumn("State");
+        model.addColumn("Email");
         model.addColumn("Amount");
         rowdata = new Object[8];
         newaccount = false;
@@ -250,13 +250,15 @@ public class FincoFrm extends javax.swing.JFrame {
             dep.setBounds(430, 15, 275, 140);
             dep.show();
 
-            // compute new amount
-            long deposit = Long.parseLong(amountDeposit);
+            if (amountDeposit != null) {
+                // compute new amount
+                long deposit = Long.parseLong(amountDeposit);
 
-            AccountController accountController = (AccountController) IOCContainer.componentMap.get("accountController");
-            accountController.addEntry(accnr, new Entry(deposit, TransactionType.Credit));
+                AccountController accountController = (AccountController) IOCContainer.componentMap.get("accountController");
+                accountController.addEntry(accnr, new Entry(deposit, TransactionType.Credit));
 
-            bindCustomerAccounts();
+                bindCustomerAccounts();
+            }
         }
     }
 
@@ -274,25 +276,25 @@ public class FincoFrm extends javax.swing.JFrame {
             Object samount1 = model.getValueAt(selection, 5);
             String samount2 = samount1.toString();
 
-            // compute new amount
-            Double deposit = Double.parseDouble(amountDeposit);
-            //String samount = (String)model.getValueAt(selection, 5);
-            Double currentamount = Double.parseDouble(samount2);
-            Double newamount = currentamount - deposit;
-            //model.setValueAt(String.valueOf(newamount),selection, 5);
+            if (amountDeposit != null) {
+                // compute new amount
+                Double deposit = Double.parseDouble(amountDeposit);
+                //String samount = (String)model.getValueAt(selection, 5);
+                Double currentamount = Double.parseDouble(samount2);
+                Double newamount = currentamount - deposit;
+                //model.setValueAt(String.valueOf(newamount),selection, 5);
 
-            AccountController accountController = (AccountController) IOCContainer.componentMap.get("accountController");
+                AccountController accountController = (AccountController) IOCContainer.componentMap.get("accountController");
 
-            accountController.addEntry(accnr, new Entry(deposit, TransactionType.Debit));
+                accountController.addEntry(accnr, new Entry(deposit, TransactionType.Debit));
 
-            bindCustomerAccounts();
+                bindCustomerAccounts();
 
-            if (newamount < 0) {
-                JOptionPane.showMessageDialog(JButton_Withdraw, " Account " + accnr + " : balance is negative: $" + String.valueOf(newamount) + " !", "Warning: negative balance", JOptionPane.WARNING_MESSAGE);
+                if (newamount < 0) {
+                    JOptionPane.showMessageDialog(JButton_Withdraw, " Account " + accnr + " : balance is negative: $" + String.valueOf(newamount) + " !", "Warning: negative balance", JOptionPane.WARNING_MESSAGE);
+                }
             }
         }
-
-
     }
 
     void JButtonAddinterest_actionPerformed(java.awt.event.ActionEvent event) {
@@ -318,8 +320,8 @@ public class FincoFrm extends javax.swing.JFrame {
                 rowdata[0] = ac.getAccNumber();
                 rowdata[1] = cu.getName();
                 rowdata[2] = cu.getCity();
-                rowdata[3] = ac.getCompanyOrPerson();
-                rowdata[4] = ac.getAccountType();
+                rowdata[3] = cu.getState();
+                rowdata[4] = cu.getEmail();
                 rowdata[5] = ac.getBalance();
                 model.addRow(rowdata);
                 counter++;

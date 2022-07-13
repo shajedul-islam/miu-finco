@@ -29,4 +29,9 @@ public abstract class CCAccount implements IAccount, Serializable {
         this.cc_number = cc_number;
         this.exp_date = exp_date;
     }
+
+    @Override
+    public void alert(String message) {
+        // TODO: implement later
+    }
 }

@@ -33,7 +33,7 @@ public class JDialog_Deposit1 extends javax.swing.JDialog {
         JButton_OK.setText("OK");
         JButton_OK.setActionCommand("OK");
         getContentPane().add(JButton_OK);
-        JButton_OK.setBounds(36, 84, 84, 24);
+        JButton_OK.setBounds(36, 84, 84, 30);
         JButton_Cancel.setText("Cancel");
         JButton_Cancel.setActionCommand("Cancel");
         getContentPane().add(JButton_Cancel);

@@ -15,10 +15,7 @@ public abstract class Account implements IAccount {
     protected int id;
     protected int customerId;
     protected String accnr;
-    protected String accountType;
-    protected String companyOrPerson;
     protected double balance;
-
     public Account() {
     }
 
@@ -53,22 +50,6 @@ public abstract class Account implements IAccount {
         return accnr;
     }
 
-    public String getAccountType() {
-        return accountType;
-    }
-
-    public void setAccountType(String at) {
-        accountType = at;
-    }
-
-    public String getCompanyOrPerson() {
-        return companyOrPerson;
-    }
-
-    public void setCompanyOrPerson(String cop) {
-        companyOrPerson = cop;
-    }
-
     public double getBalance() {
         return balance;
     }
@@ -77,10 +58,8 @@ public abstract class Account implements IAccount {
         this.balance = balance;
     }
 
-    public Account(String accnr, String at, String cop) {
+    public Account(String accnr) {
         this.accnr = accnr;
-        this.accountType = at;
-        this.companyOrPerson = cop;
         this.balance = 0;
     }
 

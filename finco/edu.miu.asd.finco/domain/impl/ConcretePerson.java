@@ -7,16 +7,9 @@ import java.sql.Date;
 
 public class ConcretePerson extends Customer implements IPerson, Serializable {
 
-    public Date birthdate;
-
-    public Date getBirthDate() {
-        return birthdate;
-    }
-
-    public ConcretePerson(String nm, String ste, String ct, String sta, String zp, String em, Date db) {
+    public ConcretePerson(String nm, String ste, String ct, String sta, String zp, String em) {
         super(nm, ste, ct, sta, zp, em);
 
-        this.birthdate = db;
     }
 
     public ConcretePerson() {

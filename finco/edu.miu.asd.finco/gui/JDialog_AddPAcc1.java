@@ -3,9 +3,11 @@ package gui; /**
  **/
 
 import controller.CustomerController;
+import domain.impl.Account;
 import domain.impl.ConcreteAccount;
 import domain.impl.ConcretePerson;
 import domain.impl.Customer;
+import factory.AccountFWfactory;
 import ioc.IOCContainer;
 
 public class JDialog_AddPAcc1 extends javax.swing.JDialog {
@@ -24,15 +26,15 @@ public class JDialog_AddPAcc1 extends javax.swing.JDialog {
         setTitle("Add account");
         setModal(true);
         getContentPane().setLayout(null);
-        setSize(283, 303);
+        setSize(283, 280);
         setVisible(false);
-        JRadioButton_Chk.setText("Checkings");
-        JRadioButton_Chk.setActionCommand("Checkings");
-        getContentPane().add(JRadioButton_Chk);
-        JRadioButton_Chk.setBounds(36, 0, 84, 24);
-        JRadioButton_Sav.setText("Savings");
-        JRadioButton_Sav.setActionCommand("Savings");
-        getContentPane().add(JRadioButton_Sav);
+        //JRadioButton_Chk.setText("Checkings");
+        //JRadioButton_Chk.setActionCommand("Checkings");
+        //getContentPane().add(JRadioButton_Chk);
+        //JRadioButton_Chk.setBounds(36, 0, 84, 24);
+        //JRadioButton_Sav.setText("Savings");
+        //JRadioButton_Sav.setActionCommand("Savings");
+        //getContentPane().add(JRadioButton_Sav);
         JRadioButton_Sav.setBounds(36, 24, 84, 24);
         JLabel1.setText("Name");
         getContentPane().add(JLabel1);
@@ -118,6 +120,7 @@ public class JDialog_AddPAcc1 extends javax.swing.JDialog {
     javax.swing.JTextField JTextField_ST = new javax.swing.JTextField();
     javax.swing.JTextField JTextField_STR = new javax.swing.JTextField();
     javax.swing.JTextField JTextField_ZIP = new javax.swing.JTextField();
+
     javax.swing.JTextField JTextField_BD = new javax.swing.JTextField();
     javax.swing.JTextField JTextField_EM = new javax.swing.JTextField();
     javax.swing.JButton JButton_OK = new javax.swing.JButton();
@@ -165,8 +168,10 @@ public class JDialog_AddPAcc1 extends javax.swing.JDialog {
 
         CustomerController customerController = (CustomerController) IOCContainer.componentMap.get("customerController");
 
-        Customer customer = new ConcretePerson(JTextField_NAME.getText(), JTextField_STR.getText(), JTextField_CT.getText(), JTextField_ST.getText(), JTextField_ZIP.getText(), JTextField_EM.getText(), null);
-        customer.AddAccount(new ConcreteAccount(JTextField_ACNR.getText(), parentframe.accountType, "P"));
+        Customer customer = new ConcretePerson(JTextField_NAME.getText(), JTextField_STR.getText(), JTextField_CT.getText(), JTextField_ST.getText(), JTextField_ZIP.getText(), JTextField_EM.getText());
+
+        Account account = AccountFWfactory.CreateAccount(JTextField_ACNR.getText());
+        customer.AddAccount(account);
 
         customerController.createCustomer(customer);
 
