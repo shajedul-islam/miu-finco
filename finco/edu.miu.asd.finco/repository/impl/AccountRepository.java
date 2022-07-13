@@ -6,10 +6,17 @@ import repository.IAccountRepository;
 
 public class AccountRepository implements IAccountRepository {
 
-    public DataAccess dataaccess;
+    private DataAccess dataaccess;
+
+    public DataAccess getDataaccess() {
+        return dataaccess;
+    }
+
+    public void setDataaccess(DataAccess dataaccess) {
+        this.dataaccess = dataaccess;
+    }
 
     public AccountRepository() {
-        dataaccess = new DataAccessFacade();
     }
 
     public void test(String s) {

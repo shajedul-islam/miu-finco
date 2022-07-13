@@ -5,8 +5,9 @@ import java.util.List;
 import domain.impl.Account;
 import domain.impl.Customer;
 import domain.impl.Entry;
+import ioc.IComponent;
 
-public interface DataAccess {
+public interface DataAccess extends IComponent {
 
     public void SaveAccount(Account account);
 
