@@ -33,4 +33,10 @@ public class CustomerRepository implements ICustomerRepository {
         return dataaccess.getallCustomer();
     }
 
+    @Override
+    public Customer getCustomerById(Integer id) {
+
+        return dataaccess.getCustomerById(id);
+    }
+
 }

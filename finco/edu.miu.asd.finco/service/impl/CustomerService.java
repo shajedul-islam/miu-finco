@@ -15,6 +15,14 @@ public class CustomerService implements ICustomerService {
     private ICustomerRepository customerRepository;
     private IAccountRepository accountRepository;
 
+    public IAccountRepository getAccountRepository() {
+        return accountRepository;
+    }
+
+    public void setAccountRepository(IAccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
+
     public void setCustomerRepository(ICustomerRepository customerRepository) {
         System.out.println("--- CustomerService.setCustomerRepository()");
         this.customerRepository = customerRepository;

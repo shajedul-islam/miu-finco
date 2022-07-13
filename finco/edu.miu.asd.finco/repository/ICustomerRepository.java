@@ -10,4 +10,5 @@ public interface ICustomerRepository extends IComponent {
     public void createCustomer(Customer customer);
 
     public List<Customer> getallCustomer();
+    public Customer getCustomerById(Integer id);
 }

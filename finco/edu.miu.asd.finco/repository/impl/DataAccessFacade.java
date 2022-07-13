@@ -267,4 +267,35 @@ public class DataAccessFacade implements DataAccess {
         return accounts;
     }
 
+    @Override
+    public Customer getCustomerById(int custId) {
+        String sql = "SELECT * FROM Customer where Id = " + custId;
+        int id = 0;
+
+        Customer customer = new ConcretePerson();
+        try {
+            Connection conn = this.connectNew();
+            java.sql.Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // loop through the result set
+            while (rs.next()) {
+                customer.setId(rs.getInt("Id"));
+                customer.setName(rs.getString("Name"));
+                customer.setStreet(rs.getString("Street"));
+                customer.setCity(rs.getString("City"));
+                customer.setState(rs.getString("State"));
+                customer.setZip(rs.getString("Zip"));
+                customer.setEmail(rs.getString("Email"));
+            }
+            rs.close();
+            conn.close();
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return customer;
+    }
+
 }

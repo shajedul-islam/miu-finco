@@ -1,4 +1,6 @@
 package domain;
 
-public interface ICustomer {
+import observer.IObserver;
+
+public interface ICustomer extends IObserver {
 }

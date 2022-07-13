@@ -3,7 +3,10 @@ package domain.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.AccountController;
 import domain.ICustomer;
+import ioc.IOCContainer;
+import notification.NotificationContext;
 
 public abstract class Customer implements ICustomer {
 
@@ -24,6 +27,15 @@ public abstract class Customer implements ICustomer {
     protected List<Account> accounts;
 
     protected List<CCAccount> ccaccounts;
+
+    public Customer() {
+    }
+
+    @Override
+    public void update(String message) {
+        NotificationContext notificationContext = (NotificationContext) IOCContainer.componentMap.get("notificationContext");
+        notificationContext.send(email, message);
+    }
 
     public int getId() {
         return Id;

@@ -8,4 +8,9 @@ public class ConcreteCCard extends CCAccount {
         super(cc_number, exp_date);
         //super.customer = new ConcretePerson(nm, ste, ct, sta, zp, em, null);
     }
+
+    @Override
+    public void alert(String message) {
+        // TODO: implement later
+    }
 }

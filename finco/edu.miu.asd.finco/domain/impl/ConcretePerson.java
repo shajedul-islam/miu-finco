@@ -18,4 +18,7 @@ public class ConcretePerson extends Customer implements IPerson, Serializable {
 
         this.birthdate = db;
     }
+
+    public ConcretePerson() {
+    }
 }

@@ -1,26 +1,36 @@
 package domain.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import domain.IAccount;
+import observer.IObservable;
+import observer.IObserver;
 
-public abstract class Account implements IAccount, Serializable {
+public abstract class Account implements IAccount {
+    private List<IObserver> observers = new ArrayList<>();
 
     private static final long serialVersionUID = -2226197306790714013L;
-
     protected int id;
-
     protected int customerId;
-
     protected String accnr;
-
     protected String accountType;
-
     protected String companyOrPerson;
-
     protected double balance;
 
     public Account() {
+    }
+
+    public void addObserver(IObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void alert(String message) {
+        for (IObserver observer : observers) {
+            observer.update("Balance > 400$");
+        }
     }
 
     public int getId() {

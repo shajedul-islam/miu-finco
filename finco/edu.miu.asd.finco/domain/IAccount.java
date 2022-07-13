@@ -1,5 +1,7 @@
 package domain;
 
-public interface IAccount {
+import observer.IObservable;
+
+public interface IAccount extends IObservable {
 
 }

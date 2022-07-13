@@ -20,6 +20,7 @@ public interface DataAccess extends IComponent {
     public void saveEntry(Entry entry);
 
     public List<Account> getAccountByCustomerId(int custId);
+    public Customer getCustomerById(int custId);
 
     public List<Customer> getallCustomer();
 }
