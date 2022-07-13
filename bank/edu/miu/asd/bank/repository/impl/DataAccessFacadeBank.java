@@ -13,7 +13,7 @@ public class DataAccessFacadeBank implements BankDataAccess{
 	private Connection connectNew() 
 	{  
         // SQLite connection string  
-        String url = "jdbc:sqlite:E:/MIU/ASD/LAB/miu-finco/bank/bank.db";
+        String url = "jdbc:sqlite:C:/ASD/bank.db";
         //String url = "jdbc:sqlite:bank.db";
         Connection conn = null;  
         try {  
