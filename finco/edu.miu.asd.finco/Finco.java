@@ -1,5 +1,3 @@
-import controller.AccountController;
-import controller.CustomerController;
 import gui.FincoFrm;
 import ioc.IOCContainer;
 
@@ -7,7 +5,7 @@ import javax.swing.UIManager;
 
 public class Finco {
     public static void main(String[] args) throws ClassNotFoundException {
-        IOCContainer.buildApplicationContext(Finco.class.getResourceAsStream("finco-dependencies.properties"));
+        IOCContainer.loadComponents(Finco.class.getResourceAsStream("finco-dependencies.properties"));
 
         try {
             try {

@@ -9,9 +9,9 @@ import project.bank.edu.miu.asd.bank.factory.AccountType;
 
 public class Bank {
     public static void main(String[] args) {
-        IOCContainer.buildApplicationContext(Bank.class.getResourceAsStream("bank-dependencies.properties"));
+        IOCContainer.loadComponents(Bank.class.getResourceAsStream("bank-dependencies.properties"));
 
-        BankAccountController bankAccountController = (BankAccountController) IOCContainer.componentMap.get("bankAccountController");
+        BankAccountController bankAccountController = (BankAccountController) IOCContainer.getComponent("bankAccountController");
 
         BankAccount bankAccount = AccountFactory.CreateAccount(AccountType.SAVINGS, "12", "person", 6);
 
