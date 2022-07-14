@@ -12,7 +12,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataAccessFacadeBank implements BankDataAccess{
+public class DataAccessFacadeBank implements BankDataAccess {
 
 	private Connection connectNew() 
 	{  
@@ -210,7 +210,8 @@ public class DataAccessFacadeBank implements BankDataAccess{
         for (BankCustomer cus : customers) {
             List<BankAccount> accounts = getAccountByCustomerId(cus.getId());
             for (BankAccount ac : accounts) {
-                cus.AddAccount(ac);
+                //cus.AddAccount(ac);
+                cus.addBankAccount(ac);
             }
         }
         return customers;
@@ -250,6 +251,75 @@ public class DataAccessFacadeBank implements BankDataAccess{
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
+
         return accounts;
+    }
+
+    @Override
+    public BankCustomer getCustomerById(int custId) {
+
+        String sql = "SELECT * FROM Customer where Id = " + custId;
+        int id = 0;
+
+        BankCustomer customer = null;
+
+        try {
+            Connection conn = this.connectNew();
+            java.sql.Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+
+            // loop through the result set
+            while (rs.next()) {
+                //customer.setId(rs.getInt("Id"));
+                //customer.setName(rs.getString("Name"));
+                //customer.setStreet(rs.getString("Street"));
+                //customer.setCity(rs.getString("City"));
+                //customer.setState(rs.getString("State"));
+                //customer.setZip(rs.getString("Zip"));
+                //customer.setEmail(rs.getString("Email"));
+
+                String name = rs.getString("Name");
+                String street = rs.getString("Street");
+                String city = rs.getString("City");
+                String state = rs.getString("State");
+                String zip = rs.getString("Zip");
+                String email = rs.getString("Email");
+
+
+                customer = new Person(name, street, city, state, zip, email, null);
+            }
+            rs.close();
+            conn.close();
+        }
+        catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return customer;
+    }
+
+    @Override
+    public void updateAccount(BankAccount account) {
+        String sql = "Update Account SET Balance = ? , AccountNumber = ? , CustomerId = ? Where Id = ?";
+
+        try {
+            Connection conn = this.connectNew();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setDouble(1, account.getBalance());
+            pstmt.setString(2, account.getAccNumber());
+            pstmt.setDouble(3, account.getCustomerId());
+            pstmt.setDouble(4, account.getId());
+            pstmt.executeUpdate();
+
+            int accountId = getLastRowId(conn);
+
+            account.setId(accountId);
+
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

@@ -1,10 +1,14 @@
 package project.bank.edu.miu.asd.bank.gui;//package project.bank;
 
+import controller.AccountController;
 import controller.CustomerController;
 import domain.impl.Account;
 import domain.impl.Customer;
+import domain.impl.TransactionType;
 import ioc.IOCContainer;
+import project.bank.edu.miu.asd.bank.controller.BankAccountController;
 import project.bank.edu.miu.asd.bank.controller.BankCustomerController;
+import project.bank.edu.miu.asd.bank.domain.BankAccount;
 import project.bank.edu.miu.asd.bank.domain.BankCustomer;
 
 import javax.swing.*;
@@ -237,8 +241,8 @@ public class BankFrm extends javax.swing.JFrame
 		List<BankCustomer> customers = bankCustomerController.getallCustomer();
 		int counter = 0;
 
-		for (Customer cu : customers) {
-			for (Account ac : cu.getAccounts()) {
+		for (BankCustomer cu : customers) {
+			for (BankAccount ac : cu.getBankAccounts()) {
 				rowdata = new Object[8];
 				rowdata[0] = ac.getAccNumber();
 				rowdata[1] = cu.getName();
@@ -292,14 +296,21 @@ public class BankFrm extends javax.swing.JFrame
 		    dep.show();
     		
 		    // compute new amount
-            long deposit = Long.parseLong(amountDeposit);
+         /*   long deposit = Long.parseLong(amountDeposit);
             String samount = (String)model.getValueAt(selection, 5);
             long currentamount = Long.parseLong(samount);
 		    long newamount=currentamount+deposit;
-		    model.setValueAt(String.valueOf(newamount),selection, 5);
+		    model.setValueAt(String.valueOf(newamount),selection, 5);*/
+
+			if (amountDeposit != null) {
+				// compute new amount
+				long deposit = Long.parseLong(amountDeposit);
+
+				BankAccountController accountController = (BankAccountController) IOCContainer.getComponent("bankAccountController");
+				accountController.addEntry(accnr, deposit, TransactionType.Credit);
+				bindCustomerAccounts();
+			}
 		}
-		
-		
 	}
 
 	void JButtonWithdraw_actionPerformed(java.awt.event.ActionEvent event)
@@ -313,16 +324,28 @@ public class BankFrm extends javax.swing.JFrame
 		    JDialog_Withdraw wd = new JDialog_Withdraw(myframe,accnr);
 		    wd.setBounds(430, 15, 275, 140);
 		    wd.show();
-    		
-		    // compute new amount
-            long deposit = Long.parseLong(amountDeposit);
-            String samount = (String)model.getValueAt(selection, 5);
-            long currentamount = Long.parseLong(samount);
-		    long newamount=currentamount-deposit;
-		    model.setValueAt(String.valueOf(newamount),selection, 5);
-		    if (newamount <0){
-		       JOptionPane.showMessageDialog(JButton_Withdraw, " Account "+accnr+" : balance is negative: $"+String.valueOf(newamount)+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
-		    }
+
+			Object samount1 = model.getValueAt(selection, 5);
+			String samount2 = samount1.toString();
+
+			if (amountDeposit != null) {
+				// compute new amount
+				Double deposit = Double.parseDouble(amountDeposit);
+				//String samount = (String)model.getValueAt(selection, 5);
+				Double currentamount = Double.parseDouble(samount2);
+				Double newamount = currentamount - deposit;
+				//model.setValueAt(String.valueOf(newamount),selection, 5);
+
+				BankAccountController accountController = (BankAccountController) IOCContainer.getComponent("bankAccountController");
+
+				accountController.addEntry(accnr, deposit, TransactionType.Debit);
+
+				bindCustomerAccounts();
+
+				if (newamount < 0) {
+					JOptionPane.showMessageDialog(JButton_Withdraw, " Account " + accnr + " : balance is negative: $" + String.valueOf(newamount) + " !", "Warning: negative balance", JOptionPane.WARNING_MESSAGE);
+				}
+			}
 		}
 		
 		

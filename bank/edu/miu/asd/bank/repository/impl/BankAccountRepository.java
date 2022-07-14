@@ -41,6 +41,11 @@ public class BankAccountRepository implements IBankAccountRepository {
 		
 		return dataaccess.getAccountByAccountNumber(accNumber);
 	}
-	
-	
+
+	@Override
+	public void updateAccount(BankAccount account) {
+		dataaccess.updateAccount(account);
+	}
+
+
 }

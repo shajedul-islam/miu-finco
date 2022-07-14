@@ -35,4 +35,9 @@ public class BankCustomerRepository implements IBankCustomerRepository{
 		return dataaccess.getallCustomer();
 	}
 
+	@Override
+	public BankCustomer getCustomerById(Integer id) {
+		return dataaccess.getCustomerById(id);
+	}
+
 }

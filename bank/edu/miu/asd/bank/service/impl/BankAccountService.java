@@ -1,11 +1,14 @@
 package project.bank.edu.miu.asd.bank.service.impl;
 
 import domain.impl.Account;
+import domain.impl.Customer;
 import domain.impl.Entry;
+import domain.impl.TransactionType;
 import project.bank.edu.miu.asd.bank.domain.BankAccount;
 import project.bank.edu.miu.asd.bank.domain.BankCustomer;
 import project.bank.edu.miu.asd.bank.repository.IBankAccountRepository;
 import project.bank.edu.miu.asd.bank.repository.IBankCustomerRepository;
+import project.bank.edu.miu.asd.bank.repository.IBankEntryRepository;
 import project.bank.edu.miu.asd.bank.service.IBankAccountService;
 import repository.IEntryRepository;
 
@@ -14,7 +17,15 @@ import java.util.List;
 public class BankAccountService implements IBankAccountService {
     private IBankAccountRepository accountRepository;
 	private IBankCustomerRepository customerRepository;
-	private IEntryRepository entryRepository;
+	private IBankEntryRepository entryRepository;
+
+	public IBankAccountRepository getAccountRepository() {
+		return accountRepository;
+	}
+
+	public void setAccountRepository(IBankAccountRepository accountRepository) {
+		this.accountRepository = accountRepository;
+	}
 
 	public IBankCustomerRepository getCustomerRepository() {
 		return customerRepository;
@@ -24,22 +35,13 @@ public class BankAccountService implements IBankAccountService {
 		this.customerRepository = customerRepository;
 	}
 
-	public IEntryRepository getEntryRepository() {
+	public IBankEntryRepository getEntryRepository() {
 		return entryRepository;
 	}
 
-	public void setEntryRepository(IEntryRepository entryRepository) {
+	public void setEntryRepository(IBankEntryRepository entryRepository) {
 		this.entryRepository = entryRepository;
 	}
-
-	public void setAccountRepository(IBankAccountRepository accountRepository) {
-        System.out.println("--- AccountService.setAccountRepository()");
-        this.accountRepository = accountRepository;
-    }
-
-    public IBankAccountRepository getAccountRepository() {
-        return accountRepository;
-    }
 
 	@Override
 	public void createAccount(BankAccount account) {
@@ -58,9 +60,31 @@ public class BankAccountService implements IBankAccountService {
 	@Override
 	public void addEntry(String accNumber, Entry entry) {
 		
-		Account account = accountRepository.getAccountByAccountNumber(accNumber);
+		//BankAccount account = accountRepository.getAccountByAccountNumber(accNumber);
+		//entry.setAccountId(account.getId());
+		//entryRepository.addEntry(entry);
+
+		BankAccount account = accountRepository.getAccountByAccountNumber(accNumber);
+		BankCustomer customer = customerRepository.getCustomerById(account.getCustomerId());
+		account.addObserver(customer);
+
+		if (entry.getTransactionType() == TransactionType.Credit) {
+			account.setBalance(account.getBalance() + entry.getAmount());
+		} else {
+			account.setBalance(account.getBalance() - entry.getAmount());
+		}
+
 		entry.setAccountId(account.getId());
 		entryRepository.addEntry(entry);
+		accountRepository.updateAccount(account);
+
+		if (entry.getTransactionType() == TransactionType.Credit && entry.getAmount() > 400) {
+			account.alert("Alert: Amount >400 Deposited!");
+		} else if (entry.getTransactionType() == TransactionType.Debit && account.getBalance() < 0) {
+			{
+				account.alert("Alert: Balance < 0!");
+			}
+		}
 	}
 	@Override
 	public List<BankCustomer> getallCustomer() {

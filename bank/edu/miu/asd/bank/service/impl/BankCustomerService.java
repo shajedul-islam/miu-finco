@@ -13,6 +13,14 @@ public class BankCustomerService implements IBankCustomerService{
 	private IBankCustomerRepository customerRepository;
 	private IBankAccountRepository accountRepository;
 
+	public IBankCustomerRepository getCustomerRepository() {
+		return customerRepository;
+	}
+
+	public void setCustomerRepository(IBankCustomerRepository customerRepository) {
+		this.customerRepository = customerRepository;
+	}
+
 	public IBankAccountRepository getAccountRepository() {
 		return accountRepository;
 	}
@@ -20,16 +28,6 @@ public class BankCustomerService implements IBankCustomerService{
 	public void setAccountRepository(IBankAccountRepository accountRepository) {
 		this.accountRepository = accountRepository;
 	}
-
-	public void setCustomerRepository(IBankCustomerRepository customerRepository) {
-        System.out.println("--- CustomerService.setCustomerRepository()");
-        this.customerRepository = customerRepository;
-    }
-
-    public IBankCustomerRepository getCustomerRepository() {
-        return customerRepository;
-    }
-
 
 	@Override
 	public int createCustomer(BankCustomer customer) {
