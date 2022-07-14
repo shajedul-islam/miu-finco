@@ -282,7 +282,6 @@ public class FincoFrm extends javax.swing.JFrame {
         CustomerController customerController = (CustomerController) IOCContainer.getComponent("customerController");
 
         List<Customer> customers = customerController.getallCustomers();
-        int counter = 0;
 
         for (Customer cu : customers) {
             for (Account ac : cu.getAccounts()) {
@@ -294,7 +293,6 @@ public class FincoFrm extends javax.swing.JFrame {
                 rowdata[4] = cu.getEmail();
                 rowdata[5] = ac.getBalance();
                 model.addRow(rowdata);
-                counter++;
             }
         }
     }
