@@ -26,14 +26,14 @@ public class BankAccountRepository implements IBankAccountRepository {
     }
 
 	@Override
-	public void createAccount(BankAccount account) {
+	public int save(BankAccount account) {
 		try {
-			dataaccess.SaveAccount(account);
+			return dataaccess.SaveAccount(account);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		return 0;
 	}
 	
 	@Override

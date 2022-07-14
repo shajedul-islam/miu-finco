@@ -9,9 +9,8 @@ public class Savings extends BankAccount {
         interest_rate = 1.25;
     }
 
-	public Savings(String accnr, String personOrCompany, int customerId) {
+	public Savings(String accnr, String personOrCompany) {
         super(accnr);
-        this.customerId = customerId;
         this.account_type = "Savings";
         interest_rate = 1.25;
         this.setCompany_or_person(personOrCompany);

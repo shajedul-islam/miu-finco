@@ -1,8 +1,16 @@
 package project.bank.edu.miu.asd.bank.gui;//package project.bank;
 
+import controller.CustomerController;
+import domain.impl.Account;
+import domain.impl.Customer;
+import ioc.IOCContainer;
+import project.bank.edu.miu.asd.bank.controller.BankCustomerController;
+import project.bank.edu.miu.asd.bank.domain.BankCustomer;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.List;
 
 /**
  * A basic JFC based application.
@@ -90,7 +98,8 @@ public class BankFrm extends javax.swing.JFrame
 		JButton_Deposit.addActionListener(lSymAction);
 		JButton_Withdraw.addActionListener(lSymAction);
 		JButton_Addinterest.addActionListener(lSymAction);
-		
+		bindCustomerAccounts();
+
 	}
 
 	
@@ -206,20 +215,42 @@ public class BankFrm extends javax.swing.JFrame
 
 		if (newaccount){
             // add row to table
-            rowdata[0] = accountnr;
-            rowdata[1] = clientName;
-            rowdata[2] = city;
-            rowdata[3] = "P";
-            rowdata[4] = accountType;
-            rowdata[5] = "0";
-            model.addRow(rowdata);
-            JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
-            newaccount=false;
-        }
+			bindCustomerAccounts();
 
+			JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
+			newaccount = false;
+        }
+		bindCustomerAccounts();
        
         
     }
+
+	void bindCustomerAccounts() {
+		if (model.getRowCount() > 0) {
+			for (int i = model.getRowCount() - 1; i > -1; i--) {
+				model.removeRow(i);
+			}
+		}
+
+		BankCustomerController bankCustomerController = (BankCustomerController) IOCContainer.getComponent("bankCustomerController");
+
+		List<BankCustomer> customers = bankCustomerController.getallCustomer();
+		int counter = 0;
+
+		for (Customer cu : customers) {
+			for (Account ac : cu.getAccounts()) {
+				rowdata = new Object[8];
+				rowdata[0] = ac.getAccNumber();
+				rowdata[1] = cu.getName();
+				rowdata[2] = cu.getCity();
+				rowdata[3] = cu.getState();
+				rowdata[4] = cu.getEmail();
+				rowdata[5] = ac.getBalance();
+				model.addRow(rowdata);
+				counter++;
+			}
+		}
+	}
 
 	void JButtonCompAC_actionPerformed(java.awt.event.ActionEvent event)
 	{

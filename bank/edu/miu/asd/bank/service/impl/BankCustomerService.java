@@ -1,11 +1,9 @@
-package project.bank.edu.miu.asd.bank.service.impl;
+ package project.bank.edu.miu.asd.bank.service.impl;
 
 import project.bank.edu.miu.asd.bank.domain.BankAccount;
 import project.bank.edu.miu.asd.bank.domain.BankCustomer;
 import project.bank.edu.miu.asd.bank.repository.IBankAccountRepository;
 import project.bank.edu.miu.asd.bank.repository.IBankCustomerRepository;
-import project.bank.edu.miu.asd.bank.repository.impl.BankAccountRepository;
-import project.bank.edu.miu.asd.bank.repository.impl.BankCustomerRepository;
 import project.bank.edu.miu.asd.bank.service.IBankCustomerService;
 
 import java.util.List;
@@ -34,18 +32,22 @@ public class BankCustomerService implements IBankCustomerService{
 
 
 	@Override
-	public void createCustomer(BankCustomer customer) {
-		customerRepository = new BankCustomerRepository();
-		accountRepository = new BankAccountRepository();
+	public int createCustomer(BankCustomer customer) {
 
-		customerRepository.createCustomer(customer);
+		customerRepository.save(customer);
 
 		List<BankAccount> accounts = customer.getBankAccounts();
 
 		for(BankAccount ac : accounts)
 		{
 		  ac.setCustomerId(customer.getId());
-		  accountRepository.createAccount(ac);
+		  return accountRepository.save(ac);
 		}
+		return 0;
+	}
+
+	@Override
+	public List<BankCustomer> getallCustomer() {
+		return customerRepository.getallCustomer();
 	}
 }
