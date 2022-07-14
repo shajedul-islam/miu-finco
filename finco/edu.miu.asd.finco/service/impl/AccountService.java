@@ -45,13 +45,13 @@ public class AccountService implements IAccountService {
 
     @Override
     public void createAccount(Account account) {
-        accountRepository.createAccount(account);
+        accountRepository.saveAccount(account);
     }
 
     @Override
     public void createAccount(List<Account> accounts) {
         for (Account ac : accounts) {
-            accountRepository.createAccount(ac);
+            accountRepository.saveAccount(ac);
         }
     }
 
