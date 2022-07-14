@@ -166,7 +166,7 @@ public class JDialog_AddPAcc1 extends javax.swing.JDialog {
         if (JRadioButton_Chk.isSelected()) parentframe.accountType = "Ch";
         else parentframe.accountType = "S";
 
-        CustomerController customerController = (CustomerController) IOCContainer.componentMap.get("customerController");
+        CustomerController customerController = (CustomerController) IOCContainer.getComponent("customerController");
 
         customerController.createCustomer(JTextField_ACNR.getText(),
                                           JTextField_NAME.getText(),

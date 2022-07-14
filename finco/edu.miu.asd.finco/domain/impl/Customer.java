@@ -33,7 +33,7 @@ public abstract class Customer implements ICustomer {
 
     @Override
     public void update(String message) {
-        NotificationContext notificationContext = (NotificationContext) IOCContainer.componentMap.get("notificationContext");
+        NotificationContext notificationContext = (NotificationContext) IOCContainer.getComponent("notificationContext");
         notificationContext.send(email, message);
     }
 
