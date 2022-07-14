@@ -17,7 +17,7 @@ public class AccountController implements IComponent {
     }
 
     public void createAccount(Account account) {
-        accountService.createAccount(account);
+        accountService.save(account);
     }
 
     public void addEntry(String accNumber, double transactionAmount, TransactionType transactionType) {

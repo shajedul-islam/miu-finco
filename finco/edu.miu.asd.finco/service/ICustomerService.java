@@ -7,7 +7,7 @@ import ioc.IComponent;
 
 public interface ICustomerService extends IComponent {
 
-    public void createCustomer(Customer customer);
+    public void save(Customer customer);
 
     public List<Customer> getallCustomers();
 }

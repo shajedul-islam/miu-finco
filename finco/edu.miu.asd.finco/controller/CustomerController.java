@@ -25,7 +25,7 @@ public class CustomerController implements IComponent {
     }
 
     public void createCustomer(Customer customer) {
-        customerService.createCustomer(customer);
+        customerService.save(customer);
     }
 
     public void createCustomer(String accountNumber, String name, String street, String city, String state, String zip, String email)

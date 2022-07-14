@@ -7,7 +7,7 @@ import ioc.IComponent;
 
 public interface ICustomerRepository extends IComponent {
 
-    public void saveCustomer(Customer customer);
+    public void save(Customer customer);
     public List<Customer> getallCustomer();
     public Customer getCustomerById(Integer id);
 }

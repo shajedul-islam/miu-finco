@@ -30,7 +30,7 @@ public class BankCustomerService implements IBankCustomerService{
 	}
 
 	@Override
-	public int createCustomer(BankCustomer customer) {
+	public int save(BankCustomer customer) {
 
 		customerRepository.save(customer);
 
