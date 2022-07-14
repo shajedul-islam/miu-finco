@@ -17,7 +17,7 @@ public class JDialog_Deposit1 extends javax.swing.JDialog {
         setTitle("Deposit");
         setModal(true);
         getContentPane().setLayout(null);
-        setSize(268, 126);
+        setSize(268, 400);
         setVisible(false);
         JLabel1.setText("Acc Nr");
         getContentPane().add(JLabel1);
