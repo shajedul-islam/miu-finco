@@ -143,10 +143,10 @@ public class DataAccessFacadeBank implements BankDataAccess {
 	@Override
 	public BankAccount getAccountByAccountNumber(String accNumber) {
 		String sql = "SELECT * FROM Account where AccountNumber = '"+accNumber+"' limit 1";
-		//String sql = "SELECT * FROM Account";
 		int id = 0;
 		String accountNo = "";
 		int customerId = 0;
+        double balance = 0;
 		BankAccount account = new Checkings(accountNo);
         try {  
         	Connection conn = this.connectNew(); 
@@ -154,10 +154,11 @@ public class DataAccessFacadeBank implements BankDataAccess {
             ResultSet rs    = stmt.executeQuery(sql);  
               
             // loop through the result set  
-            while (rs.next()) { 
+            while (rs.next()) {
             	id = rs.getInt("Id");
             	customerId = rs.getInt("CustomerId");
             	accountNo = rs.getString("AccountNumber");
+                balance = rs.getDouble("Balance");
             }
             rs.close();
             conn.close();
@@ -165,6 +166,7 @@ public class DataAccessFacadeBank implements BankDataAccess {
             account = new Checkings(accountNo);
             account.setCustomerId(customerId);
             account.setId(id);
+            account.setBalance(balance);
             
         } catch (SQLException e) {  
             System.out.println(e.getMessage());  
@@ -210,7 +212,6 @@ public class DataAccessFacadeBank implements BankDataAccess {
         for (BankCustomer cus : customers) {
             List<BankAccount> accounts = getAccountByCustomerId(cus.getId());
             for (BankAccount ac : accounts) {
-                //cus.AddAccount(ac);
                 cus.addBankAccount(ac);
             }
         }
@@ -252,6 +253,42 @@ public class DataAccessFacadeBank implements BankDataAccess {
             System.out.println(e.getMessage());
         }
 
+        return accounts;
+    }
+
+    @Override
+    public List<BankAccount> getallAccounts() {
+        String sql = "SELECT * FROM Account";
+        int id = 0;
+        String accountNo = "";
+        int customerId = 0;
+        double balance = 0;
+        List<BankAccount> accounts = new ArrayList<BankAccount>();
+
+        BankAccount account = new Checkings(accountNo);
+        try {
+            Connection conn = this.connectNew();
+            java.sql.Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            // loop through the result set
+            while (rs.next()) {
+                id = rs.getInt("Id");
+                customerId = rs.getInt("CustomerId");
+                accountNo = rs.getString("AccountNumber");
+                balance = rs.getDouble("Balance");
+                account = new Checkings(accountNo);
+                account.setCustomerId(customerId);
+                account.setBalance(balance);
+                account.setId(id);
+                accounts.add(account);
+            }
+            rs.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
         return accounts;
     }

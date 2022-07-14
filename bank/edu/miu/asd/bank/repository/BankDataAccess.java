@@ -28,4 +28,6 @@ public interface BankDataAccess extends IComponent {
 
 	public void updateAccount(BankAccount account);
 
+	public List<BankAccount> getallAccounts();
+
 }

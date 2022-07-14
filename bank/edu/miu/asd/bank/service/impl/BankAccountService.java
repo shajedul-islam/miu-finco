@@ -6,6 +6,8 @@ import domain.impl.Entry;
 import domain.impl.TransactionType;
 import project.bank.edu.miu.asd.bank.domain.BankAccount;
 import project.bank.edu.miu.asd.bank.domain.BankCustomer;
+import project.bank.edu.miu.asd.bank.domain.impl.Checkings;
+import project.bank.edu.miu.asd.bank.domain.impl.Savings;
 import project.bank.edu.miu.asd.bank.repository.IBankAccountRepository;
 import project.bank.edu.miu.asd.bank.repository.IBankCustomerRepository;
 import project.bank.edu.miu.asd.bank.repository.IBankEntryRepository;
@@ -59,10 +61,6 @@ public class BankAccountService implements IBankAccountService {
 
 	@Override
 	public void addEntry(String accNumber, Entry entry) {
-		
-		//BankAccount account = accountRepository.getAccountByAccountNumber(accNumber);
-		//entry.setAccountId(account.getId());
-		//entryRepository.addEntry(entry);
 
 		BankAccount account = accountRepository.getAccountByAccountNumber(accNumber);
 		BankCustomer customer = customerRepository.getCustomerById(account.getCustomerId());
@@ -86,8 +84,32 @@ public class BankAccountService implements IBankAccountService {
 			}
 		}
 	}
+
 	@Override
 	public List<BankCustomer> getallCustomer() {
 		return customerRepository.getallCustomer();
+	}
+
+	public void addintertestToAllAccounts()
+	{
+		Savings savings = new Savings();
+		Checkings checkings = new Checkings("");
+		List<BankAccount> accounts =  accountRepository.getallAccounts();
+        double interestRate = 0;
+		double totalInterest = 0;
+		for (BankAccount bank: accounts) {
+			if(bank.getAccount_type() == "Savings") {
+				interestRate = savings.getInterest_rate();
+			}
+			else {
+				interestRate = checkings.getInterest_rate();
+			}
+            totalInterest = (bank.getBalance() * interestRate);
+			Entry entry = new Entry(totalInterest, TransactionType.Credit);
+			entry.setAccountId(bank.getId());
+			bank.setBalance(bank.getBalance() + totalInterest);
+			entryRepository.addEntry(entry);
+			accountRepository.updateAccount(bank);
+		}
 	}
 }

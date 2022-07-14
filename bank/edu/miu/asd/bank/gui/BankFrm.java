@@ -225,8 +225,6 @@ public class BankFrm extends javax.swing.JFrame
 			newaccount = false;
         }
 		bindCustomerAccounts();
-       
-        
     }
 
 	void bindCustomerAccounts() {
@@ -239,7 +237,6 @@ public class BankFrm extends javax.swing.JFrame
 		BankCustomerController bankCustomerController = (BankCustomerController) IOCContainer.getComponent("bankCustomerController");
 
 		List<BankCustomer> customers = bankCustomerController.getallCustomer();
-		int counter = 0;
 
 		for (BankCustomer cu : customers) {
 			for (BankAccount ac : cu.getBankAccounts()) {
@@ -251,7 +248,6 @@ public class BankFrm extends javax.swing.JFrame
 				rowdata[4] = cu.getEmail();
 				rowdata[5] = ac.getBalance();
 				model.addRow(rowdata);
-				counter++;
 			}
 		}
 	}
@@ -353,7 +349,9 @@ public class BankFrm extends javax.swing.JFrame
 	
 	void JButtonAddinterest_actionPerformed(java.awt.event.ActionEvent event)
 	{
-		  JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts","Add interest to all accounts",JOptionPane.WARNING_MESSAGE);
-	    
+		BankAccountController accountController = (BankAccountController) IOCContainer.getComponent("bankAccountController");
+		accountController.addintertestToAllAccounts();
+		bindCustomerAccounts();
+		JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts","Add interest to all accounts",JOptionPane.WARNING_MESSAGE);
 	}
 }

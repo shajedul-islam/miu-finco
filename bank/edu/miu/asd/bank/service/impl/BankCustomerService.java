@@ -48,4 +48,7 @@ public class BankCustomerService implements IBankCustomerService{
 	public List<BankCustomer> getallCustomer() {
 		return customerRepository.getallCustomer();
 	}
+
+
+
 }

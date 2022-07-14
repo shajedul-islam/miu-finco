@@ -8,13 +8,13 @@ public class Checkings extends BankAccount {
 	public Checkings(String accnr, String personOrCompany) {
 		super(accnr);
         this.account_type = "Checkins";
-        interest_rate = 1.0;
+        interest_rate = .01;
         this.setCompany_or_person(personOrCompany);
 	}
 
     public Checkings(String accountNo) {
         super(accountNo);
         this.account_type = "Checkins";
-        interest_rate = 1.0;
+        interest_rate = .01;
     }
 }

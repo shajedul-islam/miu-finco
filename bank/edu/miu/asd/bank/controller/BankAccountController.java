@@ -39,4 +39,10 @@ public class BankAccountController implements IComponent {
         accountService.addEntry(accNumber, entry);
     }
 
+    public void addintertestToAllAccounts()
+    {
+        accountService.addintertestToAllAccounts();
+    }
+
+
 }
