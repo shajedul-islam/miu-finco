@@ -311,7 +311,7 @@ public class FincoFrm extends javax.swing.JFrame {
 
         CustomerController customerController = (CustomerController) IOCContainer.getComponent("customerController");
 
-        List<Customer> customers = customerController.getallCustomer();
+        List<Customer> customers = customerController.getallCustomers();
         int counter = 0;
 
         for (Customer cu : customers) {
