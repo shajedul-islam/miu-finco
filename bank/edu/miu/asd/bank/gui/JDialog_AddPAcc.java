@@ -1,4 +1,13 @@
-package project.bank.edu.miu.asd.bank.gui; /**
+package project.bank.edu.miu.asd.bank.gui;
+
+import controller.CustomerController;
+import ioc.IOCContainer;
+import project.bank.edu.miu.asd.bank.controller.BankCustomerController;
+import project.bank.edu.miu.asd.bank.domain.BankCustomer;
+import project.bank.edu.miu.asd.bank.factory.AccountFor;
+import project.bank.edu.miu.asd.bank.factory.AccountType;
+
+/**
 		A basic implementation of the JDialog class.
 **/
 
@@ -179,6 +188,22 @@ public class JDialog_AddPAcc extends javax.swing.JDialog
            else
            parentframe.accountType="S";
 	   parentframe.newaccount=true;
+
+
+	   AccountType accountType = JRadioButton_Chk.isSelected() ? AccountType.CHECKINGS : AccountType.SAVINGS;
+		BankCustomerController bankCustomerController = (BankCustomerController) IOCContainer.getComponent("bankCustomerController");
+
+		//createCustomer(AccountType accountType, String accountNumber, AccountFor accountFor, String name, String street, String city, String state, String zip, String email)
+		bankCustomerController.createCustomer(accountType,
+				JTextField_ACNR.getText(),
+				AccountFor.PERSONAL,
+				JTextField_NAME.getText(),
+				JTextField_STR.getText(),
+				JTextField_CT.getText(),
+				JTextField_ST.getText(),
+				JTextField_ZIP.getText(),
+				JTextField_EM.getText());
+
        dispose();
 	}
 

@@ -44,6 +44,4 @@ public class AccountRepository implements IAccountRepository {
 
         return dataaccess.getAccountByAccountNumber(accNumber);
     }
-
-
 }

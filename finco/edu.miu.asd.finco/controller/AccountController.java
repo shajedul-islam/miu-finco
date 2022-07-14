@@ -20,7 +20,8 @@ public class AccountController implements IComponent {
         accountService.createAccount(account);
     }
 
-    public void addEntry(String accNumber, Entry entry) {
+    public void addEntry(String accNumber, double transactionAmount, TransactionType transactionType) {
+        Entry entry = new Entry(transactionAmount,transactionType);
         accountService.addEntry(accNumber, entry);
     }
 

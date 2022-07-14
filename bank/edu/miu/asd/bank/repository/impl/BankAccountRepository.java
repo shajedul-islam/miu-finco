@@ -1,8 +1,11 @@
 package project.bank.edu.miu.asd.bank.repository.impl;
 
+import domain.impl.Account;
 import project.bank.edu.miu.asd.bank.domain.BankAccount;
 import project.bank.edu.miu.asd.bank.repository.BankDataAccess;
 import project.bank.edu.miu.asd.bank.repository.IBankAccountRepository;
+
+import java.util.List;
 
 public class BankAccountRepository implements IBankAccountRepository {
 
@@ -26,14 +29,14 @@ public class BankAccountRepository implements IBankAccountRepository {
     }
 
 	@Override
-	public void createAccount(BankAccount account) {
+	public int save(BankAccount account) {
 		try {
-			dataaccess.SaveAccount(account);
+			return dataaccess.SaveAccount(account);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		return 0;
 	}
 	
 	@Override
@@ -41,6 +44,14 @@ public class BankAccountRepository implements IBankAccountRepository {
 		
 		return dataaccess.getAccountByAccountNumber(accNumber);
 	}
-	
-	
+
+	@Override
+	public void updateAccount(BankAccount account) {
+		dataaccess.updateAccount(account);
+	}
+
+	@Override
+	public List<BankAccount> getallAccounts() {
+		return dataaccess.getallAccounts();
+	}
 }

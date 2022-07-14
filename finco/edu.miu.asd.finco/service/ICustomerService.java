@@ -9,5 +9,5 @@ public interface ICustomerService extends IComponent {
 
     public void createCustomer(Customer customer);
 
-    public List<Customer> getallCustomer();
+    public List<Customer> getallCustomers();
 }

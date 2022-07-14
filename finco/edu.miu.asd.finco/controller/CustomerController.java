@@ -16,6 +16,14 @@ public class CustomerController implements IComponent {
     public CustomerController() {
     }
 
+    public ICustomerService getCustomerService() {
+        return customerService;
+    }
+
+    public void setCustomerService(ICustomerService customerService) {
+        this.customerService = customerService;
+    }
+
     public void createCustomer(Customer customer) {
         customerService.createCustomer(customer);
     }
@@ -28,15 +36,8 @@ public class CustomerController implements IComponent {
         createCustomer(customer);
     }
 
-    public List<Customer> getallCustomer() {
-        return customerService.getallCustomer();
+    public List<Customer> getallCustomers() {
+        return customerService.getallCustomers();
     }
 
-    public ICustomerService getCustomerService() {
-        return customerService;
-    }
-
-    public void setCustomerService(ICustomerService customerService) {
-        this.customerService = customerService;
-    }
 }

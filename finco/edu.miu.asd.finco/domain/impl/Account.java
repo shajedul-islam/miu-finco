@@ -10,6 +10,7 @@ import observer.IObserver;
 
 public abstract class Account implements IAccount {
     private List<IObserver> observers = new ArrayList<>();
+    private List<Entry> entries = new ArrayList<>();
 
     private static final long serialVersionUID = -2226197306790714013L;
     protected int id;
@@ -17,17 +18,6 @@ public abstract class Account implements IAccount {
     protected String accnr;
     protected double balance;
     public Account() {
-    }
-
-    public void addObserver(IObserver observer) {
-        observers.add(observer);
-    }
-
-    @Override
-    public void alert(String message) {
-        for (IObserver observer : observers) {
-            observer.update(message);
-        }
     }
 
     public int getId() {
@@ -62,4 +52,16 @@ public abstract class Account implements IAccount {
         this.accnr = accnr;
         this.balance = 0;
     }
+
+    public void addObserver(IObserver observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void alert(String message) {
+        for (IObserver observer : observers) {
+            observer.update(message);
+        }
+    }
+
 }

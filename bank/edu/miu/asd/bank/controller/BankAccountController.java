@@ -1,6 +1,7 @@
 package project.bank.edu.miu.asd.bank.controller;
 
 import domain.impl.Entry;
+import domain.impl.TransactionType;
 import ioc.IComponent;
 import project.bank.edu.miu.asd.bank.domain.BankAccount;
 import project.bank.edu.miu.asd.bank.service.IBankAccountService;
@@ -29,12 +30,19 @@ public class BankAccountController implements IComponent {
 
 	public void CreateAccount(BankAccount account)
     {
+
     	accountService.createAccount(account);
     }
-	
-	public void addEntry(String accNumber, Entry entry)
-	{
-		accountService.addEntry(accNumber, entry);
-	}
+
+    public void addEntry(String accNumber, double transactionAmount, TransactionType transactionType) {
+        Entry entry = new Entry(transactionAmount,transactionType);
+        accountService.addEntry(accNumber, entry);
+    }
+
+    public void addintertestToAllAccounts()
+    {
+        accountService.addintertestToAllAccounts();
+    }
+
 
 }
