@@ -18,7 +18,7 @@ public abstract class BankAccount extends Account {
     }
 
     public BankAccount(String accnr) {
-        super();
+        super(accnr);
     }
 
     public BankAccount() {
