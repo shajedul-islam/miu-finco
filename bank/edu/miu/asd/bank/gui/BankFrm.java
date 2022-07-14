@@ -57,6 +57,7 @@ public class BankFrm extends javax.swing.JFrame
         model.addColumn("City");
         model.addColumn("P/C");
         model.addColumn("Ch/S");
+		model.addColumn("Email");
         model.addColumn("Amount");
         rowdata = new Object[8];
         newaccount=false;
@@ -244,9 +245,10 @@ public class BankFrm extends javax.swing.JFrame
 				rowdata[0] = ac.getAccNumber();
 				rowdata[1] = cu.getName();
 				rowdata[2] = cu.getCity();
-				rowdata[3] = cu.getState();
-				rowdata[4] = cu.getEmail();
-				rowdata[5] = ac.getBalance();
+				rowdata[3] = ac.getAccount_type();
+				rowdata[4] = ac.getCompany_or_person();
+				rowdata[5] = cu.getEmail();
+				rowdata[6] = ac.getBalance();
 				model.addRow(rowdata);
 			}
 		}
