@@ -37,7 +37,7 @@ public class CustomerController implements IComponent {
     }
 
     public List<Customer> getallCustomers() {
-        return customerService.getallCustomer();
+        return customerService.getallCustomers();
     }
 
 }

@@ -1,11 +1,13 @@
 package domain.impl;
 
 import domain.IAccount;
-
-import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
-public abstract class CCAccount implements IAccount, Serializable {
+public abstract class CCAccount implements IAccount {
+
+    private List<Entry> entries = new ArrayList<>();
 
     protected String cc_number;
 

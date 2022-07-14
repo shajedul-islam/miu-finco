@@ -104,35 +104,6 @@ public class FincoFrm extends javax.swing.JFrame {
 
     }
 
-
-    /*****************************************************
-     * The entry point for this application.
-     * Sets the Look and Feel to the System Look and Feel.
-     * Creates a new JFrame1 and makes it visible.
-     *****************************************************/
-//	static public void main(String args[])
-//	{
-//		try {
-//		    // Add the following code if you want the Look and Feel
-//		    // to be set to the Look and Feel of the native system.
-//		    
-//		    try {
-//		        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//		    } 
-//		    catch (Exception e) { 
-//		    }
-//
-//			//Create a new instance of our application's frame, and make it visible.
-//			(new gui.FincoFrm()).setVisible(true);
-//		} 
-//		catch (Throwable t) {
-//			t.printStackTrace();
-//			//Ensure the application exits with an error condition.
-//			System.exit(1);
-//		}
-//	}
-
-
     javax.swing.JPanel JPanel1 = new javax.swing.JPanel();
     javax.swing.JButton JButton_PerAC = new javax.swing.JButton();
     javax.swing.JButton JButton_CompAC = new javax.swing.JButton();
@@ -255,8 +226,7 @@ public class FincoFrm extends javax.swing.JFrame {
                 long deposit = Long.parseLong(amountDeposit);
 
                 AccountController accountController = (AccountController) IOCContainer.getComponent("accountController");
-                accountController.addEntry(accnr, new Entry(deposit, TransactionType.Credit));
-
+                accountController.addEntry(accnr, deposit, TransactionType.Credit);
                 bindCustomerAccounts();
             }
         }
@@ -286,7 +256,7 @@ public class FincoFrm extends javax.swing.JFrame {
 
                 AccountController accountController = (AccountController) IOCContainer.getComponent("accountController");
 
-                accountController.addEntry(accnr, new Entry(deposit, TransactionType.Debit));
+                accountController.addEntry(accnr, deposit, TransactionType.Debit);
 
                 bindCustomerAccounts();
 
