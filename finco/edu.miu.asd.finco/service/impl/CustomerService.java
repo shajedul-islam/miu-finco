@@ -34,13 +34,13 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public void createCustomer(Customer customer) {
-        customerRepository.createCustomer(customer);
+        customerRepository.saveCustomer(customer);
 
         List<Account> accounts = customer.getAccounts();
 
         for (Account ac : accounts) {
             ac.setCustomerId(customer.getId());
-            accountRepository.createAccount(ac);
+            accountRepository.saveAccount(ac);
         }
     }
 

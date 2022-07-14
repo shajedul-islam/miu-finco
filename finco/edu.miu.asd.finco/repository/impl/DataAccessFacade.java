@@ -46,7 +46,7 @@ public class DataAccessFacade implements DataAccess {
     }
 
     @Override
-    public void SaveAccount(Account account) {
+    public void saveAccount(Account account) {
         String sql = "INSERT INTO Account(CustomerId,AccountNumber,Balance) VALUES(?,?,?)";
 
         try {
@@ -140,7 +140,7 @@ public class DataAccessFacade implements DataAccess {
     }
 
     @Override
-    public void SaveCustomer(Customer customer) {
+    public void saveCustomer(Customer customer) {
 
         String sql = "INSERT INTO Customer(Name,Street,City,State,Zip,Email) VALUES(?,?,?,?,?,?)";
 

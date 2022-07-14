@@ -24,11 +24,11 @@ public class AccountRepository implements IAccountRepository {
     }
 
     @Override
-    public void createAccount(Account account) {
+    public void saveAccount(Account account) {
         try {
-            dataaccess.SaveAccount(account);
+            dataaccess.saveAccount(account);
         } catch (Exception e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
 

@@ -166,13 +166,15 @@ public class JDialog_AddPAcc1 extends javax.swing.JDialog {
         if (JRadioButton_Chk.isSelected()) parentframe.accountType = "Ch";
         else parentframe.accountType = "S";
 
-        Customer customer = new ConcretePerson(JTextField_NAME.getText(), JTextField_STR.getText(), JTextField_CT.getText(), JTextField_ST.getText(), JTextField_ZIP.getText(), JTextField_EM.getText());
+        CustomerController customerController = (CustomerController) IOCContainer.getComponent("customerController");
 
-        Account account = AccountFWfactory.CreateAccount(JTextField_ACNR.getText());
-        customer.AddAccount(account);
-
-        CustomerController customerController = (CustomerController) IOCContainer.componentMap.get("customerController");
-        customerController.createCustomer(customer);
+        customerController.createCustomer(JTextField_ACNR.getText(),
+                                          JTextField_NAME.getText(),
+                                          JTextField_STR.getText(),
+                                          JTextField_CT.getText(),
+                                          JTextField_ST.getText(),
+                                          JTextField_ZIP.getText(),
+                                          JTextField_EM.getText());
 
         parentframe.newaccount = true;
 

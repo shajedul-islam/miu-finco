@@ -62,5 +62,4 @@ public abstract class Account implements IAccount {
         this.accnr = accnr;
         this.balance = 0;
     }
-
 }

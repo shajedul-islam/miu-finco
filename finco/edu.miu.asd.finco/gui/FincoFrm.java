@@ -254,7 +254,7 @@ public class FincoFrm extends javax.swing.JFrame {
                 // compute new amount
                 long deposit = Long.parseLong(amountDeposit);
 
-                AccountController accountController = (AccountController) IOCContainer.componentMap.get("accountController");
+                AccountController accountController = (AccountController) IOCContainer.getComponent("accountController");
                 accountController.addEntry(accnr, new Entry(deposit, TransactionType.Credit));
 
                 bindCustomerAccounts();
@@ -284,7 +284,7 @@ public class FincoFrm extends javax.swing.JFrame {
                 Double newamount = currentamount - deposit;
                 //model.setValueAt(String.valueOf(newamount),selection, 5);
 
-                AccountController accountController = (AccountController) IOCContainer.componentMap.get("accountController");
+                AccountController accountController = (AccountController) IOCContainer.getComponent("accountController");
 
                 accountController.addEntry(accnr, new Entry(deposit, TransactionType.Debit));
 
@@ -309,7 +309,7 @@ public class FincoFrm extends javax.swing.JFrame {
             }
         }
 
-        CustomerController customerController = (CustomerController) IOCContainer.componentMap.get("customerController");
+        CustomerController customerController = (CustomerController) IOCContainer.getComponent("customerController");
 
         List<Customer> customers = customerController.getallCustomer();
         int counter = 0;
