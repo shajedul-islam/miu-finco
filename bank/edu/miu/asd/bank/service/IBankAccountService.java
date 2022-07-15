@@ -13,5 +13,5 @@ public interface IBankAccountService extends IComponent {
 	public void createAccount(List<BankAccount> accounts);
 	public void addEntry(String accNumber, Entry entry);
 	public List<BankCustomer> getallCustomer();
-	public void addintertestToAllAccounts();
+	public void addIntertestToAllAccounts();
 }

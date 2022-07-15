@@ -57,6 +57,7 @@ public class BankFrm extends javax.swing.JFrame
         model.addColumn("City");
         model.addColumn("P/C");
         model.addColumn("Ch/S");
+		model.addColumn("Email");
         model.addColumn("Amount");
         rowdata = new Object[8];
         newaccount=false;
@@ -105,34 +106,6 @@ public class BankFrm extends javax.swing.JFrame
 		bindCustomerAccounts();
 
 	}
-
-	
-	/*****************************************************
-	 * The entry point for this application.
-	 * Sets the Look and Feel to the System Look and Feel.
-	 * Creates a new JFrame1 and makes it visible.
-	 *****************************************************/
-//	static public void main(String args[])
-//	{
-//		try {
-//		    // Add the following code if you want the Look and Feel
-//		    // to be set to the Look and Feel of the native system.
-//
-//		    try {
-//		        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//		    }
-//		    catch (Exception e) {
-//		    }
-//
-//			//Create a new instance of our application's frame, and make it visible.
-//			(new BankFrm()).setVisible(true);
-//		}
-//		catch (Throwable t) {
-//			t.printStackTrace();
-//			//Ensure the application exits with an error condition.
-//			System.exit(1);
-//		}
-//	}
 
 
 	javax.swing.JPanel JPanel1 = new javax.swing.JPanel();
@@ -244,9 +217,10 @@ public class BankFrm extends javax.swing.JFrame
 				rowdata[0] = ac.getAccNumber();
 				rowdata[1] = cu.getName();
 				rowdata[2] = cu.getCity();
-				rowdata[3] = cu.getState();
-				rowdata[4] = cu.getEmail();
-				rowdata[5] = ac.getBalance();
+				rowdata[3] = ac.getAccount_type();
+				rowdata[4] = ac.getCompany_or_person();
+				rowdata[5] = cu.getEmail();
+				rowdata[6] = ac.getBalance();
 				model.addRow(rowdata);
 			}
 		}
@@ -265,18 +239,11 @@ public class BankFrm extends javax.swing.JFrame
 		pac.show();
 		
 		if (newaccount){
-            // add row to table
-            rowdata[0] = accountnr;
-            rowdata[1] = clientName;
-            rowdata[2] = city;
-            rowdata[3] = "C";
-            rowdata[4] = accountType;
-            rowdata[5] = "0";
-            model.addRow(rowdata);
+
             JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
             newaccount=false;
         }
-
+		bindCustomerAccounts();
 	}
 
 	void JButtonDeposit_actionPerformed(java.awt.event.ActionEvent event)
@@ -290,13 +257,6 @@ public class BankFrm extends javax.swing.JFrame
 		    JDialog_Deposit dep = new JDialog_Deposit(myframe,accnr);
 		    dep.setBounds(430, 15, 275, 140);
 		    dep.show();
-    		
-		    // compute new amount
-         /*   long deposit = Long.parseLong(amountDeposit);
-            String samount = (String)model.getValueAt(selection, 5);
-            long currentamount = Long.parseLong(samount);
-		    long newamount=currentamount+deposit;
-		    model.setValueAt(String.valueOf(newamount),selection, 5);*/
 
 			if (amountDeposit != null) {
 				// compute new amount
@@ -321,7 +281,7 @@ public class BankFrm extends javax.swing.JFrame
 		    wd.setBounds(430, 15, 275, 140);
 		    wd.show();
 
-			Object samount1 = model.getValueAt(selection, 5);
+			Object samount1 = model.getValueAt(selection, 6);
 			String samount2 = samount1.toString();
 
 			if (amountDeposit != null) {
@@ -350,7 +310,7 @@ public class BankFrm extends javax.swing.JFrame
 	void JButtonAddinterest_actionPerformed(java.awt.event.ActionEvent event)
 	{
 		BankAccountController accountController = (BankAccountController) IOCContainer.getComponent("bankAccountController");
-		accountController.addintertestToAllAccounts();
+		accountController.addIntertestToAllAccounts();
 		bindCustomerAccounts();
 		JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts","Add interest to all accounts",JOptionPane.WARNING_MESSAGE);
 	}

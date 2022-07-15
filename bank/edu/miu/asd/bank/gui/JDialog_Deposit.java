@@ -2,8 +2,6 @@ package project.bank.edu.miu.asd.bank.gui;
 
 public class JDialog_Deposit extends javax.swing.JDialog
 {
-    
-
     private BankFrm parentframe;
     private String accnr;
     

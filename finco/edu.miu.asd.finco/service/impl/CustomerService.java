@@ -33,14 +33,14 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public void createCustomer(Customer customer) {
-        customerRepository.saveCustomer(customer);
+    public void save(Customer customer) {
+        customerRepository.save(customer);
 
         List<Account> accounts = customer.getAccounts();
 
         for (Account ac : accounts) {
             ac.setCustomerId(customer.getId());
-            accountRepository.saveAccount(ac);
+            accountRepository.save(ac);
         }
     }
 

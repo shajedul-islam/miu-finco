@@ -34,21 +34,16 @@ public class BankCustomerController implements IComponent{
 	}
 
 	public int createCustomer(BankCustomer customer) {
-		return customerService.createCustomer(customer);
+		return customerService.save(customer);
 	}
 
 	public void createCustomer(AccountType accountType, String accountNumber, AccountFor accountFor, String name, String street, String city, String state, String zip, String email)
 	{
-		/*BankCustomer customer = new Person(name, street, city, state, zip, email, null);
-		int customerId = customerService.createCustomer(customer);
-
-		BankAccount account = AccountFactory.CreateAccount(accountType, accountNumber, accountFor, customerId);
-		customer.AddAccount(account);*/
 
 		BankCustomer bankCustomer = new Person(name, street, city, state, zip, email, null);
 		BankAccount bankAccount = AccountFactory.CreateAccount(accountType, accountNumber, accountFor);
 		bankCustomer.addBankAccount(bankAccount);
-		customerService.createCustomer(bankCustomer);
+		customerService.save(bankCustomer);
 	}
 
 	public List<BankCustomer> getallCustomer() {

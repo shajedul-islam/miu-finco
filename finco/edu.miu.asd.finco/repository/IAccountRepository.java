@@ -7,9 +7,9 @@ public interface IAccountRepository extends IComponent {
 
     public void test(String s);
 
-    public void saveAccount(Account account);
+    public void save(Account account);
 
-    public void updateAccount(Account account);
+    public void update(Account account);
 
     public Account getAccountByAccountNumber(String accNumber);
 }

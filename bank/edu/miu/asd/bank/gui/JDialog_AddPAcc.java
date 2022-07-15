@@ -191,9 +191,8 @@ public class JDialog_AddPAcc extends javax.swing.JDialog
 
 
 	   AccountType accountType = JRadioButton_Chk.isSelected() ? AccountType.CHECKINGS : AccountType.SAVINGS;
-		BankCustomerController bankCustomerController = (BankCustomerController) IOCContainer.getComponent("bankCustomerController");
+	   BankCustomerController bankCustomerController = (BankCustomerController) IOCContainer.getComponent("bankCustomerController");
 
-		//createCustomer(AccountType accountType, String accountNumber, AccountFor accountFor, String name, String street, String city, String state, String zip, String email)
 		bankCustomerController.createCustomer(accountType,
 				JTextField_ACNR.getText(),
 				AccountFor.PERSONAL,

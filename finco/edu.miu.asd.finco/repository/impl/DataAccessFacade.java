@@ -1,5 +1,7 @@
 package repository.impl;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,9 +21,12 @@ public class DataAccessFacade implements DataAccess {
 
     private Connection connectNew() {
         // SQLite connection string  
-        String url = "jdbc:sqlite:C://ASD/finco.db";
+        String url = "jdbc:sqlite:finco.db";
         Connection conn = null;
         try {
+            Path path = Paths.get("");
+            String directoryName = path.toAbsolutePath().toString();
+            System.out.println("Current Working Directory is = " +directoryName);
             conn = DriverManager.getConnection(url);
         } catch (SQLException e) {
             System.out.println(e.getMessage());

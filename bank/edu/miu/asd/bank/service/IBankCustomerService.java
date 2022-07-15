@@ -6,6 +6,6 @@ import project.bank.edu.miu.asd.bank.domain.BankCustomer;
 import java.util.List;
 
 public interface IBankCustomerService extends IComponent{
-	public int createCustomer(BankCustomer customer);
+	public int save(BankCustomer customer);
 	public List<BankCustomer> getallCustomer();
 }

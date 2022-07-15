@@ -90,7 +90,7 @@ public class BankAccountService implements IBankAccountService {
 		return customerRepository.getallCustomer();
 	}
 
-	public void addintertestToAllAccounts()
+	public void addIntertestToAllAccounts()
 	{
 		Savings savings = new Savings();
 		Checkings checkings = new Checkings("");

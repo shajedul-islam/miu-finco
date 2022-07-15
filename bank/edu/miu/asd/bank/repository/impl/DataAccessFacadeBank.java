@@ -147,6 +147,8 @@ public class DataAccessFacadeBank implements BankDataAccess {
 		String accountNo = "";
 		int customerId = 0;
         double balance = 0;
+        String accountType = "";
+        String companyPerson = "";
 		BankAccount account = new Checkings(accountNo);
         try {  
         	Connection conn = this.connectNew(); 
@@ -166,6 +168,8 @@ public class DataAccessFacadeBank implements BankDataAccess {
             account = new Checkings(accountNo);
             account.setCustomerId(customerId);
             account.setId(id);
+            account.setCompany_or_person(companyPerson);
+            account.setAccount_type(accountType);
             account.setBalance(balance);
             
         } catch (SQLException e) {  
@@ -225,6 +229,8 @@ public class DataAccessFacadeBank implements BankDataAccess {
         String accountNo = "";
         int customerId = 0;
         double balance = 0;
+        String accountType = "";
+        String companyPerson = "";
         List<BankAccount> accounts = new ArrayList<BankAccount>();
 
         BankAccount account = new Checkings(accountNo);
@@ -238,10 +244,14 @@ public class DataAccessFacadeBank implements BankDataAccess {
                 id = rs.getInt("Id");
                 customerId = rs.getInt("CustomerId");
                 accountNo = rs.getString("AccountNumber");
+                accountType = rs.getString("AccountType");
+                companyPerson = rs.getString("CompanyPerson");
                 balance = rs.getDouble("Balance");
                 account = new Checkings(accountNo);
                 account.setCustomerId(customerId);
                 account.setBalance(balance);
+                account.setCompany_or_person(companyPerson);
+                account.setAccount_type(accountType);
                 account.setId(id);
                 accounts.add(account);
             }
@@ -263,6 +273,8 @@ public class DataAccessFacadeBank implements BankDataAccess {
         String accountNo = "";
         int customerId = 0;
         double balance = 0;
+        String accountType = "";
+        String companyPerson = "";
         List<BankAccount> accounts = new ArrayList<BankAccount>();
 
         BankAccount account = new Checkings(accountNo);
@@ -277,8 +289,12 @@ public class DataAccessFacadeBank implements BankDataAccess {
                 customerId = rs.getInt("CustomerId");
                 accountNo = rs.getString("AccountNumber");
                 balance = rs.getDouble("Balance");
+                accountType = rs.getString("AccountType");
+                companyPerson = rs.getString("CompanyPerson");
                 account = new Checkings(accountNo);
                 account.setCustomerId(customerId);
+                account.setCompany_or_person(companyPerson);
+                account.setAccount_type(accountType);
                 account.setBalance(balance);
                 account.setId(id);
                 accounts.add(account);

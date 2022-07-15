@@ -44,14 +44,14 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public void createAccount(Account account) {
-        accountRepository.saveAccount(account);
+    public void save(Account account) {
+        accountRepository.save(account);
     }
 
     @Override
-    public void createAccount(List<Account> accounts) {
+    public void save(List<Account> accounts) {
         for (Account ac : accounts) {
-            accountRepository.saveAccount(ac);
+            accountRepository.save(ac);
         }
     }
 
@@ -69,7 +69,7 @@ public class AccountService implements IAccountService {
 
         entry.setAccountId(account.getId());
         entryRepository.addEntry(entry);
-        accountRepository.updateAccount(account);
+        accountRepository.update(account);
 
         if (entry.getTransactionType() == TransactionType.Credit && entry.getAmount() > 400) {
             account.alert("Alert: Amount >400 Deposited!");

@@ -1,6 +1,11 @@
 package project.bank.edu.miu.asd.bank.gui;
 
 
+import ioc.IOCContainer;
+import project.bank.edu.miu.asd.bank.controller.BankCustomerController;
+import project.bank.edu.miu.asd.bank.factory.AccountFor;
+import project.bank.edu.miu.asd.bank.factory.AccountType;
+
 public class JDialog_AddCompAcc extends javax.swing.JDialog
 {
     private BankFrm parentframe;
@@ -139,10 +144,23 @@ public class JDialog_AddCompAcc extends javax.swing.JDialog
        parentframe.city=JTextField_CT.getText();
        parentframe.zip=JTextField_ZIP.getText();
        parentframe.state=JTextField_ST.getText();
-       if (JRadioButton_Chk.isSelected())
-           parentframe.accountType="Ch";
-           else
-           parentframe.accountType="S";
+//       if (JRadioButton_Chk.isSelected())
+//           parentframe.accountType="Ch";
+//           else
+//           parentframe.accountType="S";
+
+		AccountType accountType = JRadioButton_Chk.isSelected() ? AccountType.CHECKINGS : AccountType.SAVINGS;
+		BankCustomerController bankCustomerController = (BankCustomerController) IOCContainer.getComponent("bankCustomerController");
+
+		bankCustomerController.createCustomer(accountType,
+				JTextField_ACNR.getText(),
+				AccountFor.COMPANY,
+				JTextField_NAME.getText(),
+				JTextField_STR.getText(),
+				JTextField_CT.getText(),
+				JTextField_ST.getText(),
+				JTextField_ZIP.getText(),
+				JTextField_EM.getText());
 	   parentframe.newaccount=true;
 	   dispose();
 			 

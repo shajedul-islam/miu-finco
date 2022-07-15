@@ -24,7 +24,7 @@ public class AccountRepository implements IAccountRepository {
     }
 
     @Override
-    public void saveAccount(Account account) {
+    public void save(Account account) {
         try {
             dataaccess.saveAccount(account);
         } catch (Exception e) {
@@ -35,7 +35,7 @@ public class AccountRepository implements IAccountRepository {
     }
 
     @Override
-    public void updateAccount(Account account) {
+    public void update(Account account) {
         dataaccess.updateAccount(account);
     }
 
