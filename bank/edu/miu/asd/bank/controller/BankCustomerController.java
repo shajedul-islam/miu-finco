@@ -11,22 +11,20 @@ import project.bank.edu.miu.asd.bank.domain.impl.Person;
 import project.bank.edu.miu.asd.bank.factory.AccountFactory;
 import project.bank.edu.miu.asd.bank.factory.AccountFor;
 import project.bank.edu.miu.asd.bank.factory.AccountType;
-import project.bank.edu.miu.asd.bank.service.IBankCustomerService;
-import service.ICustomerService;
-import service.impl.CustomerService;
+import project.bank.edu.miu.asd.bank.repository.BankDataAccess;
+import project.bank.edu.miu.asd.bank.repository.impl.DataAccessFacadeBank;
+
 
 import java.util.List;
 
 public class BankCustomerController implements IComponent{
 
-	private IBankCustomerService customerService;
-
-	public IBankCustomerService getCustomerService() {
-		return customerService;
+	public BankDataAccess dataaccess= new DataAccessFacadeBank();
+	public BankDataAccess getDataaccess() {
+		return dataaccess;
 	}
-
-	public void setCustomerService(IBankCustomerService customerService) {
-		this.customerService = customerService;
+	public void setDataaccess(BankDataAccess dataaccess) {
+		this.dataaccess = dataaccess;
 	}
 
 	public BankCustomerController()
@@ -34,7 +32,17 @@ public class BankCustomerController implements IComponent{
 	}
 
 	public int createCustomer(BankCustomer customer) {
-		return customerService.save(customer);
+		//return customerService.save(customer);
+
+		dataaccess.SaveCustomer(customer);
+		List<BankAccount> accounts = customer.getBankAccounts();
+		for(BankAccount ac : accounts)
+		{
+			ac.setCustomerId(customer.getId());
+			return dataaccess.SaveAccount(ac);
+		}
+		return 0;
+
 	}
 
 	public void createCustomer(AccountType accountType, String accountNumber, AccountFor accountFor, String name, String street, String city, String state, String zip, String email)
@@ -43,10 +51,12 @@ public class BankCustomerController implements IComponent{
 		BankCustomer bankCustomer = new Person(name, street, city, state, zip, email, null);
 		BankAccount bankAccount = AccountFactory.CreateAccount(accountType, accountNumber, accountFor);
 		bankCustomer.addBankAccount(bankAccount);
-		customerService.save(bankCustomer);
+		//customerService.save(bankCustomer);
+		dataaccess.SaveCustomer(bankCustomer);
 	}
 
 	public List<BankCustomer> getallCustomer() {
-		return customerService.getallCustomer();
+		//return customerService.getallCustomer();
+		return dataaccess.getallCustomer();
 	}
 }

@@ -20,8 +20,9 @@ import repository.DataAccess;
 public class DataAccessFacade implements DataAccess {
 
     private Connection connectNew() {
-        // SQLite connection string  
-        String url = "jdbc:sqlite:finco.db";
+        // SQLite connection string
+        //String url = "jdbc:sqlite:bank.db";
+        String url = "jdbc:sqlite:C:/ASD/finco.db";
         Connection conn = null;
         try {
             Path path = Paths.get("");

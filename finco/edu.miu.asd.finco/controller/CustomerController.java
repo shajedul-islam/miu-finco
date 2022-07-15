@@ -7,25 +7,28 @@ import domain.impl.ConcretePerson;
 import domain.impl.Customer;
 import factory.AccountFWfactory;
 import ioc.IComponent;
-import service.ICustomerService;
+import repository.DataAccess;
+import repository.impl.DataAccessFacade;
 
 public class CustomerController implements IComponent {
 
-    private ICustomerService customerService;
+    public DataAccess dataaccess = new DataAccessFacade();
+    //private ICustomerService customerService;
 
     public CustomerController() {
     }
 
-    public ICustomerService getCustomerService() {
+  /*  public ICustomerService getCustomerService() {
         return customerService;
     }
 
     public void setCustomerService(ICustomerService customerService) {
         this.customerService = customerService;
-    }
+    }*/
 
     public void createCustomer(Customer customer) {
-        customerService.save(customer);
+        //customerService.save(customer);
+        dataaccess.saveCustomer(customer);
     }
 
     public void createCustomer(String accountNumber, String name, String street, String city, String state, String zip, String email)
@@ -37,7 +40,8 @@ public class CustomerController implements IComponent {
     }
 
     public List<Customer> getallCustomers() {
-        return customerService.getallCustomers();
+        //return customerService.getallCustomers();
+        return  dataaccess.getallCustomer();
     }
 
 }

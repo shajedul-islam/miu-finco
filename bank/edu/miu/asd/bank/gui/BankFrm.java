@@ -262,8 +262,12 @@ public class BankFrm extends javax.swing.JFrame
 				// compute new amount
 				long deposit = Long.parseLong(amountDeposit);
 
-				BankAccountController accountController = (BankAccountController) IOCContainer.getComponent("bankAccountController");
+				/*BankAccountController accountController = (BankAccountController) IOCContainer.getComponent("bankAccountController");
+				accountController.addEntry(accnr, deposit, TransactionType.Credit);*/
+
+				AccountController accountController = (AccountController) IOCContainer.getComponent("accountController");
 				accountController.addEntry(accnr, deposit, TransactionType.Credit);
+
 				bindCustomerAccounts();
 			}
 		}
@@ -292,8 +296,10 @@ public class BankFrm extends javax.swing.JFrame
 				Double newamount = currentamount - deposit;
 				//model.setValueAt(String.valueOf(newamount),selection, 5);
 
-				BankAccountController accountController = (BankAccountController) IOCContainer.getComponent("bankAccountController");
+				/*BankAccountController accountController = (BankAccountController) IOCContainer.getComponent("bankAccountController");
+				accountController.addEntry(accnr, deposit, TransactionType.Debit);*/
 
+				AccountController accountController = (AccountController) IOCContainer.getComponent("accountController");
 				accountController.addEntry(accnr, deposit, TransactionType.Debit);
 
 				bindCustomerAccounts();

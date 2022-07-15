@@ -7,5 +7,6 @@ public class ConcreteAccount extends Account {
 
     public ConcreteAccount(String accnr) {
         super(accnr);
+        this.interest_rate = 0.01;
     }
 }

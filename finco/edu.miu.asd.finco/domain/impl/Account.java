@@ -17,6 +17,8 @@ public abstract class Account implements IAccount {
     protected int customerId;
     protected String accnr;
     protected double balance;
+
+    protected double interest_rate;
     public Account() {
     }
 
@@ -42,6 +44,10 @@ public abstract class Account implements IAccount {
 
     public double getBalance() {
         return balance;
+    }
+
+    public double getInterest_rate() {
+        return interest_rate;
     }
 
     public void setBalance(double balance) {

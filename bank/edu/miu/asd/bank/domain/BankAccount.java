@@ -4,7 +4,7 @@ import domain.impl.Account;
 
 public abstract class BankAccount extends Account {
 
-    protected double interest_rate;
+    //protected double interest_rate;
     protected String account_type;
     public String getAccount_type()
     {
@@ -24,9 +24,9 @@ public abstract class BankAccount extends Account {
     public BankAccount() {
     }
 
-    public double getInterest_rate() {
+    /*public double getInterest_rate() {
         return interest_rate;
-    }
+    }*/
 
     public void setAccount_type(String account_type) {
         this.account_type = account_type;
