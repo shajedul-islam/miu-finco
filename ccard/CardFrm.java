@@ -1,14 +1,12 @@
 package project.ccard;
+import project.ccard.controller.CCAccountController;
 
-import domain.impl.Account;
 import domain.impl.CCAccount;
 import domain.impl.Customer;
-import ioc.IOCContainer;
-import project.ccard.controller.CustomerController;
+import domain.impl.TransactionType;
+import project.ccard.controller.CCCustomerController;
 
 import java.awt.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.ActionEvent;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
@@ -204,7 +202,7 @@ public class CardFrm extends javax.swing.JFrame
 		ccac.setBounds(450, 20, 300, 380);
 		ccac.show();
 
-		CustomerController cc = new CustomerController();
+		CCCustomerController cc = new CCCustomerController();
 		cc.createCustomer(accountType,ccnumber,expdate,clientName,street,city, state, zip,email);
 		if (newaccount){
 			bindCustomerAccounts();
@@ -227,21 +225,23 @@ public class CardFrm extends javax.swing.JFrame
         int selection = JTable1.getSelectionModel().getMinSelectionIndex();
         if (selection >=0){
             String name = (String)model.getValueAt(selection, 0);
+			String accnumber = (String)model.getValueAt(selection, 1);
     	    
 		    //Show the dialog for adding deposit amount for the current mane
 		    JDialog_Deposit dep = new JDialog_Deposit(thisframe,name);
 		    dep.setBounds(430, 15, 275, 140);
 		    dep.show();
-    		
-		    // compute new amount
-            long deposit = Long.parseLong(amountDeposit);
-            String samount = (String)model.getValueAt(selection, 4);
-            long currentamount = Long.parseLong(samount);
-		    long newamount=currentamount+deposit;
-		    model.setValueAt(String.valueOf(newamount),selection, 4);
+
+			if (amountDeposit != null) {
+				// compute new amount
+				long deposit = Long.parseLong(amountDeposit);
+
+				//AccountController accountController = (AccountController) IOCContainer.getComponent("accountController");
+				CCAccountController accountController = new CCAccountController();
+				accountController.addEntry(accnumber, deposit, TransactionType.Credit);
+				bindCustomerAccounts();
+			}
 		}
-		
-		
 	}
 
 	void JButtonWithdraw_actionPerformed(java.awt.event.ActionEvent event)
@@ -250,21 +250,36 @@ public class CardFrm extends javax.swing.JFrame
         int selection = JTable1.getSelectionModel().getMinSelectionIndex();
         if (selection >=0){
             String name = (String)model.getValueAt(selection, 0);
+			String accnumber = (String)model.getValueAt(selection, 1);
 
 		    //Show the dialog for adding withdraw amount for the current mane
 		    JDialog_Withdraw wd = new JDialog_Withdraw(thisframe,name);
 		    wd.setBounds(430, 15, 275, 140);
 		    wd.show();
+
+			Object samount1 = model.getValueAt(selection, 4);
+			String samount2 = samount1.toString();
+
+			if (amountDeposit != null) {
+				// compute new amount
+				Double deposit = Double.parseDouble(amountDeposit);
+				//String samount = (String)model.getValueAt(selection, 5);
+				Double currentamount = Double.parseDouble(samount2);
+				Double newamount = currentamount - deposit;
+				//model.setValueAt(String.valueOf(newamount),selection, 5);
+
+				//AccountController accountController = (AccountController) IOCContainer.getComponent("accountController");
+				CCAccountController accountController = new CCAccountController();
+				accountController.addEntry(accnumber, deposit, TransactionType.Debit);
+
+				bindCustomerAccounts();
+
+				if (newamount < 0) {
+					JOptionPane.showMessageDialog(JButton_Withdraw, " Account " + accnumber + " : balance is negative: $" + String.valueOf(newamount) + " !", "Warning: negative balance", JOptionPane.WARNING_MESSAGE);
+				}
+			}
     		
-		    // compute new amount
-            long deposit = Long.parseLong(amountDeposit);
-            String samount = (String)model.getValueAt(selection, 4);
-            long currentamount = Long.parseLong(samount);
-		    long newamount=currentamount-deposit;
-		    model.setValueAt(String.valueOf(newamount),selection, 4);
-		    if (newamount <0){
-		       JOptionPane.showMessageDialog(JButton_Withdraw, " "+name+" Your balance is negative: $"+String.valueOf(newamount)+" !","Warning: negative balance",JOptionPane.WARNING_MESSAGE);
-		    }
+
 		}
 		
 		
@@ -278,7 +293,7 @@ public class CardFrm extends javax.swing.JFrame
 		}
 
 		//controller.CustomerController customerController = (controller.CustomerController) IOCContainer.getComponent("customerController");
-		CustomerController customerController = new CustomerController();
+		CCCustomerController customerController = new CCCustomerController();
 
 		List<Customer> customers = customerController.getallCustomers();
 		for (Customer cu : customers) {

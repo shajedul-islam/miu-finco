@@ -70,7 +70,7 @@ public class CCDataAccessFacade implements ICCDataAccess
 
     @Override
     public void updateCCAccount(CCAccount account) {
-        String sql = "Update CCAccount SET Balance = ? , AccountNumber = ? , CustomerId = ? Where Id = ?";
+        String sql = "Update CCAccount SET Balance = ? , CCNumber = ? , CustomerId = ? Where Id = ?";
 
         try {
             Connection conn = this.connectNew();

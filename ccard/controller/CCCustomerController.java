@@ -10,10 +10,10 @@ import project.ccard.repository.CCDataAccessFacade;
 
 import java.util.List;
 
-public class CustomerController implements IComponent {
+public class CCCustomerController implements IComponent {
     public ICCDataAccess dataaccess = new CCDataAccessFacade();
 
-    public CustomerController() {
+    public CCCustomerController() {
     }
     public void createCustomer(Customer customer) {
         dataaccess.saveCustomer(customer);

@@ -5,22 +5,20 @@ import ioc.IComponent;
 import project.ccard.repository.ICCDataAccess;
 import project.ccard.repository.CCDataAccessFacade;
 
-public class AccountController implements IComponent
+public class CCAccountController implements IComponent
 {
     public ICCDataAccess dataaccess = new CCDataAccessFacade();
 
-    public AccountController()
+    public CCAccountController()
     {
     }
 
     public void addEntry(String accNumber, double transactionAmount, TransactionType transactionType) {
         Entry entry = new Entry(transactionAmount,transactionType);
-        //accountService.addEntry(accNumber, entry);
 
         CCAccount account = dataaccess.getCCAccountByAccountNumber(accNumber);
         Customer customer = dataaccess.getCustomerById(account.getCustomerId());
-        //account(customer);
-
+        //account.addObserver(customer);
         if (entry.getTransactionType() == TransactionType.Credit) {
             account.setBalance(account.getBalance() + entry.getAmount());
         } else {
@@ -32,11 +30,12 @@ public class AccountController implements IComponent
         dataaccess.updateCCAccount(account);
 
         if (entry.getTransactionType() == TransactionType.Credit && entry.getAmount() > 400) {
-            account.alert("Alert: Amount >400 Deposited!");
-        } else if (entry.getTransactionType() == TransactionType.Debit && account.getBalance() < 0) {
-            {
-                account.alert("Alert: Balance < 0!");
-            }
+            //account.alert("Alert: Amount >400 Deposited!");
+        }
+        else if (entry.getTransactionType() == TransactionType.Debit && account.getBalance() < 0) {
+        {
+            //account.alert("Alert: Balance < 0!");
+        }
         }
     }
 
