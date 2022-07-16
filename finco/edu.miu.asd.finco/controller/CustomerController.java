@@ -49,5 +49,4 @@ public class CustomerController implements IComponent {
         //return customerService.getallCustomers();
         return  dataaccess.getallCustomer();
     }
-
 }

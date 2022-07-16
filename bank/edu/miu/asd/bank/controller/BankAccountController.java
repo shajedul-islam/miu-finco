@@ -14,10 +14,7 @@ import project.bank.edu.miu.asd.bank.repository.impl.DataAccessFacadeBank;
 import java.util.List;
 
 public class BankAccountController implements IComponent {
-
-
     public BankDataAccess dataaccess = new DataAccessFacadeBank();
-
 	public void CreateAccount(BankAccount account)
     {
         try {
