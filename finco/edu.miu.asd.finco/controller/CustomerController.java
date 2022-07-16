@@ -13,22 +13,28 @@ import repository.impl.DataAccessFacade;
 public class CustomerController implements IComponent {
 
     public DataAccess dataaccess = new DataAccessFacade();
+
+    public void setDataAccess(DataAccess dataaccess) {
+        this.dataaccess = dataaccess;
+    }
+    public DataAccess getDataAccess() {
+        return dataaccess;
+    }
+
     //private ICustomerService customerService;
 
     public CustomerController() {
     }
 
-  /*  public ICustomerService getCustomerService() {
-        return customerService;
-    }
-
-    public void setCustomerService(ICustomerService customerService) {
-        this.customerService = customerService;
-    }*/
-
     public void createCustomer(Customer customer) {
         //customerService.save(customer);
         dataaccess.saveCustomer(customer);
+
+        List<Account> accounts = customer.getAccounts();
+        for (Account ac : accounts) {
+            ac.setCustomerId(customer.getId());
+            dataaccess.saveAccount(ac);
+        }
     }
 
     public void createCustomer(String accountNumber, String name, String street, String city, String state, String zip, String email)

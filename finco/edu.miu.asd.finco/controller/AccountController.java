@@ -7,7 +7,15 @@ import repository.impl.DataAccessFacade;
 
 public class AccountController implements IComponent {
 
-    public DataAccess dataaccess = new DataAccessFacade();
+    public DataAccess dataaccess= new DataAccessFacade();
+
+    public void setDataAccess(DataAccess dataaccess) {
+        this.dataaccess = dataaccess;
+    }
+    public DataAccess getDataAccess() {
+        return dataaccess;
+    }
+
     /*private IAccountService accountService;*/
 
     /*public void setAccountService(IAccountService accountService) {
