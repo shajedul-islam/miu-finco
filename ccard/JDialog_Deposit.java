@@ -1,14 +1,16 @@
+package project.ccard;
+import gui.FincoFrm;
+
+
 import java.awt.*;
 import javax.swing.*;
 
 public class JDialog_Deposit extends javax.swing.JDialog
 {
-    
-
-    private BankFrm parentframe;
+    private CardFrm parentframe;
     private String name;
     
-	public JDialog_Deposit(BankFrm parent, String aname)
+	public JDialog_Deposit(CardFrm parent, String aname)
 	{
 		super(parent);
 		parentframe=parent;

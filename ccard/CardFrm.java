@@ -1,8 +1,15 @@
 package project.ccard;
 
+import domain.impl.Account;
+import domain.impl.CCAccount;
+import domain.impl.Customer;
+import ioc.IOCContainer;
+import project.ccard.controller.CustomerController;
+
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
 
@@ -14,7 +21,7 @@ public class CardFrm extends javax.swing.JFrame
     /****
      * init variables in the object
      ****/
-    String clientName,street,city, zip, state,accountType,amountDeposit,expdate, ccnumber;
+    public String clientName,street,city, zip, state,accountType,amountDeposit,expdate, ccnumber, email;
     boolean newaccount;
     private DefaultTableModel model;
     private JTable JTable1;
@@ -85,7 +92,7 @@ public class CardFrm extends javax.swing.JFrame
 		JButton_GenBill.addActionListener(lSymAction);
 		JButton_Deposit.addActionListener(lSymAction);
 		JButton_Withdraw.addActionListener(lSymAction);
-		
+		bindCustomerAccounts();
 	}
 
 	
@@ -197,20 +204,13 @@ public class CardFrm extends javax.swing.JFrame
 		ccac.setBounds(450, 20, 300, 380);
 		ccac.show();
 
+		CustomerController cc = new CustomerController();
+		cc.createCustomer(accountType,ccnumber,expdate,clientName,street,city, state, zip,email);
 		if (newaccount){
-            // add row to table
-            rowdata[0] = clientName;
-            rowdata[1] = ccnumber;
-            rowdata[2] = expdate;
-            rowdata[3] = accountType;
-            rowdata[4] = "0";
-            model.addRow(rowdata);
-            JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
+			bindCustomerAccounts();
+			JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
             newaccount=false;
-        }
-
-       
-        
+       }
     }
 
 	void JButtonGenerateBill_actionPerformed(java.awt.event.ActionEvent event)
@@ -269,5 +269,28 @@ public class CardFrm extends javax.swing.JFrame
 		
 		
 	}
-	
+
+	void bindCustomerAccounts() {
+		if (model.getRowCount() > 0) {
+			for (int i = model.getRowCount() - 1; i > -1; i--) {
+				model.removeRow(i);
+			}
+		}
+
+		//controller.CustomerController customerController = (controller.CustomerController) IOCContainer.getComponent("customerController");
+		CustomerController customerController = new CustomerController();
+
+		List<Customer> customers = customerController.getallCustomers();
+		for (Customer cu : customers) {
+			for (CCAccount ac : cu.getCCAccounts()) {
+				rowdata = new Object[8];
+				rowdata[0] = cu.getName();
+				rowdata[1] = ac.getAccnr();
+				rowdata[2] = ac.getexpExpiryDate();
+				rowdata[3] = ac.getCardType();
+				rowdata[4] = ac.getBalance();
+				model.addRow(rowdata);
+			}
+		}
+	}
 }

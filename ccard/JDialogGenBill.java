@@ -1,7 +1,7 @@
 /*
 		A basic implementation of the JDialog class.
 */
-
+package project.ccard;
 import java.awt.*;
 import javax.swing.*;
 

@@ -1,15 +1,17 @@
-/*
+package project.ccard;/*
 		A basic implementation of the JDialog class.
 */
+
+import gui.FincoFrm;
 
 import java.awt.*;
 import javax.swing.*;
 
 public class JDialog_AddCCAccount extends javax.swing.JDialog
 {
-    private BankFrm parentframe;
+    private CardFrm parentframe;
     
-	public JDialog_AddCCAccount(BankFrm parent)
+	public JDialog_AddCCAccount(CardFrm parent)
 	{
 		super(parent);
 		parentframe=parent;
